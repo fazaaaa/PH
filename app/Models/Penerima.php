@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Penerima extends Model
 {
     use HasFactory;
+    protected $fillable = ['nik','no_kk','nama','status_pkj','jk','jb','foto_diri'];
+    public $timestamp = true;
 }

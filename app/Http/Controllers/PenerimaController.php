@@ -119,24 +119,20 @@ class PenerimaController extends Controller
      */
     public function destroy(string $id)
     {
-        // $mobil = Mobil::findOrFail($id);
-        // $blog = Mobil::findOrFail($id);
-        // if ($mobil->foto) {
-        //     $old_foto = $mobil->foto;
-        //     $filepath = public_path()
-        //        . '/assets/img/artikel/' . $mobil->foto;
-        //     try {
-        //         File::delete($filepath);
-        //     }   catch (FileNotFoundException $e) {
-        //         // File sudah dihapus/tidak ada
-        //     }
-        // }
-        // $mobil->delete();
-        // Session::flash("flash_notification", [
-        //     "level" => "success",
-        //     "message" => "Berhasil Menghapus <b>"
-        //         . $blog->mobil . "</b>"
-        // ]);
-        // return redirect()->route('mobil.index');
+        $penban = Penerima::findOrFail($id);
+        if ($penban->foto_diri) {
+            $filepath = public_path() . '/assets/img/' . $penban->foto_diri;
+            try {
+                File::delete($filepath);
+            } catch (FileNotFoundException $e) {
+                // File sudah dihapus/tidak ada
+            }
+        }
+        $penban->delete();
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Berhasil Menghapus <b>" . $penban->penban . "</b>"
+        ]);
+        return redirect()->route('penban.index');
     }
 }
