@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Jenis Dinding</label>
-                                    <input class="form-control number {{ $errors->has('jenis_dinding') ? ' has-error' : '' }}" type="text"
+                                    <input class="form-control  {{ $errors->has('jenis_dinding') ? ' has-error' : '' }}" type="text"
                                     name="jenis_dinding" id="" required>
                                    @if ($errors->has('jenis_dinding'))
                                 <span class="help-block">
@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Fasilitas MCK</label>
-                                    <input class="form-control number {{ $errors->has('fasilitas_mck') ? ' has-error' : '' }}" type="text"
+                                    <input class="form-control  {{ $errors->has('fasilitas_mck') ? ' has-error' : '' }}" type="text"
                                     name="fasilitas_mck" id="" required>
                                    @if ($errors->has('fasilitas_mck'))
                                 <span class="help-block">
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Sumber Listrik</label>
-                                    <input class="form-control number {{ $errors->has('sumber_listrik') ? ' has-error' : '' }}" type="text"
+                                    <input class="form-control {{ $errors->has('sumber_listrik') ? ' has-error' : '' }}" type="text"
                                     name="sumber_listrik" id="" required>
                                    @if ($errors->has('sumber_listrik'))
                                 <span class="help-block">
