@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Jenis Kelamin</label>
-                                    <input class="form-control number {{ $errors->has('jk') ? ' has-error' : '' }}" type="text"
+                                    <input class="form-control {{ $errors->has('jk') ? ' has-error' : '' }}" type="text"
                                     name="jk" id="" required>
                                    @if ($errors->has('jk'))
                                 <span class="help-block">
@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Jenis Bantuan</label>
-                                    <input class="form-control number {{ $errors->has('jb') ? ' has-error' : '' }}" type="text"
+                                    <input class="form-control {{ $errors->has('jb') ? ' has-error' : '' }}" type="text"
                                     name="jb" id="" required>
                                    @if ($errors->has('jb'))
                                 <span class="help-block">

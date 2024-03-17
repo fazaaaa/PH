@@ -44,7 +44,7 @@
                                     <td>{{$data->status_pkj}}</td>
                                     <td>{{$data->jk}}</td>
                                     <td>{{$data->jb}}</td>
-                                    <td><img class="img-thumbnail" src="{{asset('assets/img/mobil/' .$data->foto_diri. '')}}"
+                                    <td><img class="img-thumbnail" src="{{asset('assets/img/' .$data->foto_diri. '')}}"
                                         style="width:100px; height:70px;" alt="Foto Pribadi"></td>
                                 
                                     <td style="text-align: center;">
