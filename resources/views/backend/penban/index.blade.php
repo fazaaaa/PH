@@ -31,7 +31,6 @@
                                     <th>Status Pekerjaan</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Jenis Bantuan</th>
-                                    <!-- <th>Harga</th> -->
                                     <th>Foto Pribadi</th>
                                     <th style="text-align: center;">Aksi</th>
                                 </tr>

@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => '/admin'], function () {
-    Route::resource('penban', 'PenerimaController');
-    Route::resource('konmah', 'KondisiRumahController');
-    Route::get('/penban', 'App/Http/Controllers/PenerimaController@index')->name('penban.index');
+    Route::resource('penban', \App\Http\Controllers\PenerimaController::class);
+    Route::resource('konmah', \App\Http\Controllers\KondisiRumahController::class);
+    // Route::get('/penban', 'App/Http/Controllers/PenerimaController@index')->name('penban.index');
 });
