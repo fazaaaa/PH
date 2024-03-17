@@ -27,7 +27,7 @@ class PenerimaController extends Controller
     public function create()
     {
         // $penban = Penerima::all();
-        return view('backend.penban.create', compact('penban'));
+        return view('backend.penban.create');
     }
 
     /**

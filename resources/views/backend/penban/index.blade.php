@@ -17,7 +17,7 @@
                 <div class="card">
                     <h5 class="card-header">Data Penerima Bantuan</h5><br>
                     <center>
-                            <a href="{{ route('mobil.create') }}"
+                            <a href="{{ route('penban.create') }}"
                                 class="la la-cloud-upload btn btn-info btn-rounded btn-floating btn-outline">&nbsp;Tambah Data
                             </a>
                     </center>
