@@ -21,10 +21,11 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::group(['prefix' => '/admin'], function () {
-    Route::resource('penban', \App\Http\Controllers\PenerimaController::class);
-    Route::resource('konmah', \App\Http\Controllers\KondisiRumahController::class);
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/penban', \App\Http\Controllers\PenerimaController::class);
+    Route::resource('/konmah', \App\Http\Controllers\KondisiRumahController::class);
     // Route::get('/penban', 'App/Http/Controllers/PenerimaController@index')->name('penban.index');
 });
