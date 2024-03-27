@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PenerimaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,11 +22,14 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-
+// Route::group(['prefix' =>'/'], function () {
+//     Route::get('/', [App\Http\Controllers\FrontendController::class])->name('frontend.index');
+// });
 
 Route::group(['prefix' => '/admin'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/penban', \App\Http\Controllers\PenerimaController::class);
     Route::resource('/konmah', \App\Http\Controllers\KondisiRumahController::class);
-    // Route::get('/penban', 'App/Http/Controllers/PenerimaController@index')->name('penban.index');
+
+
 });

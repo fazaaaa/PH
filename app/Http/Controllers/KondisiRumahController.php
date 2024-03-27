@@ -17,8 +17,8 @@ class KondisiRumahController extends Controller
      */
     public function index()
     {
-        $konru = Kondisi::orderBy('create_at','desc')->get();
-        return view('backend.konmah.index', compact('konru'));
+        $kondisiRumah = Kondisi::orderBy('created_at', 'desc')->get();
+        return view('backend.konmah.index', compact('kondisiRumah'));
     }
 
     /**
@@ -27,7 +27,7 @@ class KondisiRumahController extends Controller
     public function create()
     {
         $penban = Penerima::all();
-        return view('backend.konmah.create', compact('konru'));
+        return view('backend.konmah.create', compact('penban'));
     }
 
     /**
@@ -39,25 +39,25 @@ class KondisiRumahController extends Controller
             'id_penerima' => 'required',
             'foto_rumah' => 'required|mimes:jpeg,jpg,png,gif|max:2048'
         ]);
-        $konru = new Kondisi();
-        $konru->nik = $request->nik;
-        $konru->id_penerima = $request->id_penerima;
-        $konru->tmpt_berteduh = $request->tmpt_berteduh;
-        $konru->jenis_lantai = $request->jenis_lantai;
-        $konru->jenis_dinding = $request->jenis_dinding;
-        $konru->fasilitas_mck = $request->fasilitas_mck;
-        $konru->sumber_listrik = $request->sumber_listrik;
+        $kondisiRumah = new Kondisi();
+        $kondisiRumah->nik = $request->nik;
+        $kondisiRumah->id_penerima = $request->id_penerima;
+        $kondisiRumah->tmpt_berteduh = $request->tmpt_berteduh;
+        $kondisiRumah->jenis_lantai = $request->jenis_lantai;
+        $kondisiRumah->jenis_dinding = $request->jenis_dinding;
+        $kondisiRumah->fasilitas_mck = $request->fasilitas_mck;
+        $kondisiRumah->sumber_listrik = $request->sumber_listrik;
         if ($request->hasFile('foto_rumah')) {
             $file = $request->file('foto_rumah');
             $path = public_path() . '/assets/img/ ';
             $filename = str::random(6) . '_' . $file->getClientOriginalName();
             $file->move($path, $filename);
-            $konru->foto_rumah = $filename;
+            $kondisiRumah->foto_rumah = $filename;
         }
-        $konru->save();
+        $kondisiRumah->save();
         Session::flash("flash_notification", [
             "level" => "Success",
-            "message" => "Berhasil Menyimpan <b>" . $konru->konru . "</b>"
+            "message" => "Berhasil Menyimpan <b>" . $kondisiRumah->kondisiRumah . "</b>"
         ]);
         return redirect()->route('konmah.index');
     }
@@ -67,8 +67,8 @@ class KondisiRumahController extends Controller
      */
     public function show(string $id)
     {
-        $konru = Kondisi::findOrFail($id);
-        return view('backend.konmah.show', compact('konru'));
+        $kondisiRumah = Kondisi::findOrFail($id);
+        return view('backend.konmah.show', compact('kondisiRumah'));
     }
 
     /**
@@ -76,9 +76,9 @@ class KondisiRumahController extends Controller
      */
     public function edit(string $id)
     {
-        $konru = Kondisi::findOrFail($id);
+        $kondisiRumah = Kondisi::findOrFail($id);
         $penban = Penerima::all();
-        return view('backend.konmah.edit', compact('konru'));
+        return view('backend.konmah.edit', compact('kondisiRumah'));
     }
 
     /**
@@ -89,34 +89,34 @@ class KondisiRumahController extends Controller
         $this->validate($request, [
             'id_penerima' => 'required'
         ]);
-        $konru = Kondisi::findOrFail($id);
-        $konru->nik = $request->nik;
-        $konru->id_penerima = $request->id_penerima;
-        $konru->tmpt_berteduh = $request->tmpt_berteduh;
-        $konru->jenis_lantai = $request->jenis_lantai;
-        $konru->jenis_dinding = $request->jenis_dinding;
-        $konru->fasilitas_mck = $request->fasilitas_mck;
-        $konru->sumber_listrik = $request->sumber_listrik;
+        $kondisiRumah = Kondisi::findOrFail($id);
+        $kondisiRumah->nik = $request->nik;
+        $kondisiRumah->id_penerima = $request->id_penerima;
+        $kondisiRumah->tmpt_berteduh = $request->tmpt_berteduh;
+        $kondisiRumah->jenis_lantai = $request->jenis_lantai;
+        $kondisiRumah->jenis_dinding = $request->jenis_dinding;
+        $kondisiRumah->fasilitas_mck = $request->fasilitas_mck;
+        $kondisiRumah->sumber_listrik = $request->sumber_listrik;
         if ($request->hasFile('foto_rumah')) {
             $file = $request->file('foto_rumah');
             $path = public_path('/assets/img/');
             $filename = Str::random(6) . '_' . $file->getClientOriginalName();
             $file->move($path, $filename);
 
-            if ($konru->foto_rumah){
-                $filepath = public_path('/assets/img/') . $konru->foto_rumah;
+            if ($kondisiRumah->foto_rumah){
+                $filepath = public_path('/assets/img/') . $kondisiRumah->foto_rumah;
                 try {
                     File::delete($filepath);
                 } catch (FileNotFoundException $e) {
                     // Anda bisa menambahkan log atau penanganan kesalahan di sini jika diperlukan
                 }
             }
-            $konru->foto_rumah = $filename;
+            $kondisiRumah->foto_rumah = $filename;
         }
-        $konru->save();
+        $kondisiRumah->save();
         Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Berhasil Mengedit <b>" . $konru->konru . "</b>"
+            "message" => "Berhasil Mengedit <b>" . $kondisiRumah->kondisiRumah . "</b>"
         ]);
         return redirect()->route('konmah.index');
     }
@@ -126,19 +126,19 @@ class KondisiRumahController extends Controller
      */
     public function destroy(string $id)
     {
-        $konru = Kondisi::findOrFail($id);
-        if ($konru->foto_rumah) {
-            $filepath = public_path() . '/assets/img/' . $konru->foto_rumah;
+        $kondisiRumah = Kondisi::findOrFail($id);
+        if ($kondisiRumah->foto_rumah) {
+            $filepath = public_path() . '/assets/img/' . $kondisiRumah->foto_rumah;
             try {
                 File::delete($filepath);
             } catch (FileNotFoundException $e) {
                 // File sudah dihapus/tidak ada
             }
         }
-        $konru->delete();
+        $kondisiRumah->delete();
         Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Berhasil Menghapus <b>" . $konru->konru . "</b>"
+            "message" => "Berhasil Menghapus <b>" . $kondisiRumah->kondisiRumah . "</b>"
         ]);
         return redirect()->route('konmah.index');
     }

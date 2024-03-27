@@ -19,10 +19,9 @@
                     <div class="card">
                         <h5 class="card-header">Show Data Penerima Bantuan </h5>
                          <i class ="zmdi zmdi-badge-check-zmdi-hc-fw"></i>
-                         <!-- {{ $mobil->merk->merk_mobil }} {{ $mobil->jenis->jenis_mobil }} -->
                         </h5>
                         <div class ="card-body">
-                            <img src="{{ asset('assets/img/mobil/' .$penban->foto_diri.'') }}"
+                            <img src="{{ asset('assets/img/' .$penban->foto_diri.'') }}"
                             style="width:300px;" class="float-left rounded m-r-30 m-b-30">
                             <br>
                             <p>

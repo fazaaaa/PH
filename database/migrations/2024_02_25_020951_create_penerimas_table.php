@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('penerimas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('nik');
-            $table->integer('no_kk');
+            $table->bigInteger('nik');
+            $table->bigInteger('no_kk');
             $table->string('nama');
             $table->string('status_pkj');
             $table->string('jk');

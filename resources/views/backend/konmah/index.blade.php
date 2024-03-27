@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($konru as $data)
+                                @foreach ($kondisiRumah as $data)
                                 <tr>
                                     <td>{{$data->nik}}</td>
                                     <td>{{$data->id_penerima}}</td>
@@ -44,16 +44,16 @@
                                     <td>{{$data->jenis_lantai}}</td>
                                     <td>{{$data->jenis_dinding}}</td>
                                     <td>{{$data->sumber_listrik}}</td>
-                                    <td><img class="img-thumbnail" src="{{asset('assets/img/mobil/' .$data->foto_rumah. '')}}"
+                                    <td><img class="img-thumbnail" src="{{asset('assets/img/' .$data->foto_rumah. '')}}"
                                         style="width:100px; height:70px;" alt="Foto Rumah"></td>
                                 
                                     <td style="text-align: center;">
-                                        <form action="{{route('konru.destroy', $data->id)}}" method="post">
+                                        <form action="{{route('kondisiRumah.destroy', $data->id)}}" method="post">
                                             {{csrf_field()}}
-                                        <a href="{{route('konru.edit', $data->id)}}"
+                                        <a href="{{route('kondisiRumah.edit', $data->id)}}"
                                              class="zmdi zmdi-edit btn btn-warning btn-rounded btn-floating btn-outline">
                                         </a>
-                                        <a href="{{route('konru.show', $data->id)}}"
+                                        <a href="{{route('kondisiRumah.show', $data->id)}}"
                                             class="zmdi zmdi-eye btn btn-success btn-rounded btn-floating btn-outline">
                                         </a>
                                             <input type="hidden" name="_method" value="DELETE">

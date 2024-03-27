@@ -24,8 +24,9 @@
                     <div class="card-header">Edit Data Kondisi Rumah Penerima Bantuan</div>
                     </center>
                         <div class="card-body">
-                            <form action="{{route('konru.update',$konru->id)}}" method="post" enctype="multipart/form-data">
-                                {{csrf_field()}}
+                            <form action="{{ route('kondisiRumah.update', ['id' => $kondisiRumah->id]) }}" method="POST" enctype="multipart/form-data">
+                                @csrf_field
+                                <!-- @method('PUT') -->
                                 <div class="form-group">
                                     <label for="">NIK</label>
                                     <input class="form-control{{ $errors->has('nik') ? ' has-error' : '' }}" type="text"

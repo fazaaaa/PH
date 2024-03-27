@@ -10,4 +10,8 @@ class Kondisi extends Model
     use HasFactory;
     protected $fillable = ['nik','id_penerima','tmpt_berteduh','jenis_lantai','jenis_dinding','fasilitas_mck','sumber_listrik','foto_rumah'];
     public $timestamp = true;
+
+    public function penerima(){
+        return $this->belongsTo('App\Penerima','id_penerima');
+    }
 }

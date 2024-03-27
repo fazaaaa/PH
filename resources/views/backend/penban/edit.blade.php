@@ -27,8 +27,9 @@
                             </center>
             
                             <div class="card-body">
-                                <form action="{{route('penban.update',$penban->id)}}" method="post" enctype="multipart/form-data">
-                                    {{csrf_field()}}
+                                <form action="{{route('penban.update', $penban->id)}}" method="POST" enctype="multipart/form-data">
+                                {{csrf_field()}}
+                                    <!-- @method('PUT') -->
                                      <input type="hidden" name="_method" value="PATCH">
                                      <div class="form-group">
                                     <label for="">NIK</label>
@@ -72,7 +73,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Jenis Kelamin</label>
-                                    <input class="form-control number {{ $errors->has('jk') ? ' has-error' : '' }}" type="text"
+                                    <input class="form-control {{ $errors->has('jk') ? ' has-error' : '' }}" type="text"
                                     name="jk" id="" required>
                                    @if ($errors->has('jk'))
                                 <span class="help-block">
@@ -82,7 +83,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Jenis Bantuan</label>
-                                    <input class="form-control number {{ $errors->has('jb') ? ' has-error' : '' }}" type="text"
+                                    <input class="form-control {{ $errors->has('jb') ? ' has-error' : '' }}" type="text"
                                     name="jb" id="" required>
                                    @if ($errors->has('jb'))
                                 <span class="help-block">
@@ -91,15 +92,23 @@
                             @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Foto Pribadi</label>
-                                    <input class="form-control{{ $errors->has('foto_diri') ? ' has-error' : '' }}" type="file"
-                                    name="foto_diri" id="" required>
-                                   @if ($errors->has('foto_diri'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('foto_diri') }}</strong>
-                                </span>
-                            @endif
-                                </div>
+                                        <label for="">Foto</label>
+                                        @if (isset($penban) && $penban->foto)
+                                        <p>
+                                           <img src="{{ asset('assets/img/'
+                                           .$mobil->foto.'') }}"
+                                           style="margin-top:15px;margin-bottom:15px;
+                                           max-height:100px; border:1px; border-color:black;">
+                                           </p>
+                                         @endif  
+                                        <input class="form-control{{ $errors->has('foto') ? ' has-error' : '' }}" type="file" 
+                                        name="foto" id="" value="{{ $mobil->foto }}">
+                                       @if ($errors->has('foto'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('foto') }}</strong>
+                                    </span>
+                                @endif
+                                    </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-outline-info btn-rounded btn-block">
                                             Simpan Data

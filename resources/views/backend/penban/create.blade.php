@@ -28,7 +28,7 @@
                                 {{csrf_field()}}
                                 <div class="form-group">
                                     <label for="">NIK</label>
-                                    <input class="form-control{{ $errors->has('nik') ? ' has-error' : '' }}" type="text"
+                                    <input class="form-control allownumericwithoutdecimal{{ $errors->has('nik') ? ' has-error' : '' }}" type="text"
                                     name="nik" id="" required>
                                    @if ($errors->has('nik'))
                                 <span class="help-block">

@@ -19,45 +19,45 @@
                     <div class="card">
                         <h5 class="card-header">Show Data Kondisi Rumah Penerima Bantuan </h5>
                          <i class ="zmdi zmdi-badge-check-zmdi-hc-fw"></i>
-                         {{ $konru->id_penerima->id_penerima }} 
+                         {{ $kondisiRumah->id_penerima->id_penerima }} 
                         </h5>
                         <div class ="card-body">
-                            <img src="{{ asset('assets/img/mobil/' .$konru->foto_rumah.'') }}"
+                            <img src="{{ asset('assets/img/mobil/' .$kondisiRumah->foto_rumah.'') }}"
                             style="width:300px;" class="float-left rounded m-r-30 m-b-30">
                             <br>
                             <p>
                                 NIK : 
                                 <button class="btn btn-danger btn-floating">
-                                    {{ $konru->nik }}
+                                    {{ $kondisiRumah->nik }}
                                 </button>
                             </p>
                             <p> Tempat Berteduh :
                                 <button class="btn btn-accent btn-floating">
-                                    {{ $konru->tmpt_berteduh}}
+                                    {{ $kondisiRumah->tmpt_berteduh}}
                                 </button>
                             </p>
                             <p> Jenis Lantai :
                                 <button class="btn btn-accent btn-floating">
-                                    {{ $konru->jenis_lantai}}
+                                    {{ $kondisiRumah->jenis_lantai}}
                                 </button>
                             </p>
                             <p> Jenis Dinding :
                                 <button class="btn btn-accent btn-floating">
-                                    {{ $konru->jenis_dinding}}
+                                    {{ $kondisiRumah->jenis_dinding}}
                                 </button>
                             </p>
                             <p> Fasilitas MCK :
                                 <button class="btn btn-accent btn-floating">
-                                    {{ $konru->fasilitas_mck}}
+                                    {{ $kondisiRumah->fasilitas_mck}}
                                 </button>
                             </p>
                             <p> Sumber Listrik :
                                 <button class="btn btn-accent btn-floating">
-                                    {{ $konru->sumber_listrik}}
+                                    {{ $kondisiRumah->sumber_listrik}}
                                 </button>
                             </p>
                             <p>
-                               Tanggal : {{ $penban->created_at->format('d M Y H:i') }}WIB
+                               Tanggal : {{ $kondisiRumah->created_at->format('d M Y H:i') }}WIB
                             </p>
                         </div>	
                     </div>

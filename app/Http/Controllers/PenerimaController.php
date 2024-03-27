@@ -87,7 +87,7 @@ class PenerimaController extends Controller
         $penban->nik = $request->nik;
         $penban->no_kk = $request->no_kk;
         $penban->nama = $request->nama;
-        $penban->pkj = $request->pkj;
+        $penban->status_pkj = $request->status_pkj;
         $penban->jk = $request->jk;
         $penban->jb = $request->jb;
         if ($request->hasFile('foto_diri')) {
