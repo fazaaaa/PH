@@ -82,7 +82,7 @@
                         <td>{{ $p->Pendidikan_terakhir }}</td>
                         <td>{{ $p->Jenis_bantuan }}</td>
                         <td>{{ $p->Penerima_bantuan }}</td>
-                        <td>{{ $p->pekerjaan->pekerjaan }}</td>
+                        <td>{{ $p->pekerjaan->Pekerjaan }}</td>
                         <td class="text-center">
                             @if ($p->kondisiRumah->foto_rumah)
                                 <img src="{{ asset('storage/foto_rumah/' . $p->kondisiRumah->foto_rumah) }}"

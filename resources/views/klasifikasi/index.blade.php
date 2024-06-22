@@ -284,7 +284,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($hasils as $hasil)
+                                        @forelse ($hasils as $hasil)
                                             <tr>
                                                 <td>
                                                     <p class="text-xs font-weight-bold mb-0">
@@ -292,24 +292,38 @@
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $hasil->pendapatan }}
+                                                    <p class="text-xs font-weight-bold mb-0">
+                                                        {{ $hasil->pendapatan }}
                                                     </p>
                                                 </td>
                                                 <td>
                                                     <p class="text-xs font-weight-bold mb-0">
-                                                        {{ $hasil->jumlah }}</p>
+                                                        {{ $hasil->jumlah }}
+                                                    </p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $hasil->status }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">
+                                                        {{ $hasil->status }}
+                                                    </p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $hasil->keterangan }}
+                                                    <p class="text-xs font-weight-bold mb-0">
+                                                        {{ $hasil->keterangan }}
                                                     </p>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class="alert alert-warning" role="alert">
+                                                        Data belum terinput.
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
+
                                 <br><br>
                             </div>
                         </div>
@@ -345,7 +359,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($klasifikasis as $klasifikasi)
+                                        @forelse ($klasifikasis as $klasifikasi)
                                             <tr>
                                                 <td>
                                                     <p class="text-xs font-weight-bold mb-0">
@@ -371,7 +385,15 @@
                                                     </p>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class="alert alert-warning" role="alert">
+                                                        Data belum terinput.
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                                 <br><br>

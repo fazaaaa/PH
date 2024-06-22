@@ -15,7 +15,7 @@ class RwController extends Controller
 {
     public function indexpenduduk()
     {
-        $penduduk = Penduduk::all();
+        $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('rw.penduduk.index', compact('penduduk'));
     }
 
@@ -84,7 +84,7 @@ class RwController extends Controller
 
     public function indexpekerjaan()
     {
-        $pekerjaan = Pekerjaan::with('penduduk')->get();
+        $pekerjaan = Pekerjaan::with('penduduk')->whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('rw.pekerjaan.index', compact('pekerjaan'));
     }
 
@@ -524,11 +524,13 @@ class RwController extends Controller
 
     public function predict()
     {
-        $hasils = Hasil::with('penduduk')->get();
-        $klasifikasis = Klasifikasi::with('penduduk')->get();
+        // Get all 'Hasil' records except those with IDs 1 to 5
+        $hasils = Hasil::with('penduduk')->whereNotIn('id_penduduk', [1, 2, 3, 4, 5])->get();
 
+        // Get all 'Klasifikasi' records except those with IDs 1 to 5
+        $klasifikasis = Klasifikasi::with('penduduk')->whereNotIn('id_penduduk', [1, 2, 3, 4, 5])->get();
 
-
-        return view('rw.klasifikasi.index', compact('hasils', 'klasifikasis'));
+        // Return the view with these filtered collections
+        return view('klasifikasi.index', compact('hasils', 'klasifikasis'));
     }
 }

@@ -60,13 +60,16 @@ class KlasifikasiController extends Controller
 
     public function predict()
     {
-        $hasils = Hasil::with('penduduk')->get();
-        $klasifikasis = Klasifikasi::with('penduduk')->get();
+        // Get all 'Hasil' records except those with IDs 1 to 5
+        $hasils = Hasil::with('penduduk')->whereNotIn('id_penduduk', [1, 2, 3, 4, 5])->get();
 
+        // Get all 'Klasifikasi' records except those with IDs 1 to 5
+        $klasifikasis = Klasifikasi::with('penduduk')->whereNotIn('id_penduduk', [1, 2, 3, 4, 5])->get();
 
-
+        // Return the view with these filtered collections
         return view('klasifikasi.index', compact('hasils', 'klasifikasis'));
     }
+
 
 
 

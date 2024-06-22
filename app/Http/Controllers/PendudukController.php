@@ -18,6 +18,7 @@ class PendudukController extends Controller
     public function index(Request $request)
     {
         $query = Penduduk::query();
+        $query->whereNotIn('id', [1, 2, 3, 4, 5]);
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -210,6 +211,8 @@ class PendudukController extends Controller
         Pekerjaan::where('id_penduduk', $id)->delete();
         Pendidikan::where('id_penduduk', $id)->delete();
         KondisiRumah::where('id_penduduk', $id)->delete();
+        Klasifikasi::where('id_penduduk', $id)->delete();
+        Hasil::where('id_penduduk', $id)->delete();
 
         return redirect()->route('penduduk.index')->with('success', 'Data berhasil dihapus');
     }

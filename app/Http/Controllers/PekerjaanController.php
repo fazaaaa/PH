@@ -12,7 +12,7 @@ class PekerjaanController extends Controller
 {
     public function index()
     {
-        $pekerjaan = Pekerjaan::with('penduduk')->get();
+        $pekerjaan = Pekerjaan::with('penduduk')->whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('pekerjaan.index', compact('pekerjaan'));
     }
 
