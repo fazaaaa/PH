@@ -264,9 +264,22 @@
 
                                 <label for="hub_kel">Hubungan Keluarga</label>
                                 <div class="mb-3">
-                                    <input type="text" id="hub_kel" name="Hbg_kel" class="form-control"
+                                    <!-- <input type="text" id="hub_kel" name="Hbg_kel" class="form-control"
                                         placeholder="Hubungan Keluarga" aria-label="Hubungan Keluarga"
-                                        value="{{ $penduduk->Hbg_kel }}">
+                                        value="{{ $penduduk->Hbg_kel }}"> -->
+                                    <select id="hub_kel" name="Hbg_kel" class="form-control"
+                                        aria-label="Hubungan Keluarga">
+                                        <option value="">Pilih Hubungan Keluarga</option>
+                                        <option value="kepala keluarga"
+                                            {{ $penduduk->Hbg_kel == 'kepala keluarga' ? 'selected' : '' }}>Kepala Keluarga
+                                        </option>
+                                        <option value="Ibu"
+                                            {{ $penduduk->Hbg_kel == 'ibu' ? 'selected' : '' }}>Ibu
+                                        </option>
+                                        <option value="Anak"
+                                            {{ $penduduk->Hbg_kel == 'anak' ? 'selected' : '' }}>Anak
+                                        </option>
+                                    </select>
                                 </div>
 
                                 <label for="jk">Jenis Kelamin</label>
@@ -335,13 +348,6 @@
                                     <input type="text" id="penerima_bantuan" name="Penerima_bantuan"
                                         class="form-control" placeholder="Penerima Bantuan"
                                         aria-label="Penerima Bantuan" value="{{ $penduduk->Penerima_bantuan }}">
-                                </div>
-
-                                <label for="jenis_bantuan_lain">Jenis Bantuan Lain</label>
-                                <div class="mb-3">
-                                    <input type="text" id="jenis_bantuan_lain" name="Jenis_bantuan_lain"
-                                        class="form-control" placeholder="Jenis Bantuan Lain"
-                                        aria-label="Jenis Bantuan Lain" value="{{ $penduduk->Jenis_bantuan_lain }}">
                                 </div>
 
                                 <div class="mb-3">

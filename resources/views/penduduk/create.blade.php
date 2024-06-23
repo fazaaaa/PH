@@ -263,8 +263,15 @@
 
                                 <label for="hub_kel">Hubungan Keluarga</label>
                                 <div class="mb-3">
-                                    <input type="text" id="hub_kel" name="Hbg_kel" class="form-control"
-                                        placeholder="Hubungan Keluarga" aria-label="Hubungan Keluarga">
+                                    <!-- <input type="text" id="hub_kel" name="Hbg_kel" class="form-control"
+                                        placeholder="Hubungan Keluarga" aria-label="Hubungan Keluarga"> -->
+                                    <select id="hub_kel" name="Hbg_kel" class="form-control"
+                                        aria-label="Hubungan Keluarga">
+                                        <option value="">Pilih Hubungan Keluarga</option>
+                                        <option value="kepala keluarga">Kepala Keluarga</option>
+                                        <option value="ibu">Ibu</option>
+                                        <option value="anak">Anak</option>
+                                    </select>
                                 </div>
 
                                 <label for="jk">Jenis Kelamin</label>
@@ -330,13 +337,6 @@
                                         class="form-control" placeholder="Penerima Bantuan"
                                         aria-label="Penerima Bantuan">
                                 </div>
-
-                                <label for="jenis_bantuan_lain">Jenis Bantuan Lain</label>
-                                <div class="mb-3">
-                                    <input type="text" id="jenis_bantuan_lain" name="Jenis_bantuan_lain"
-                                        class="form-control" placeholder="Jenis Bantuan Lain"
-                                        aria-label="Jenis Bantuan Lain">
-                                </div </div>
                                 <div class="mb-3">
                                     <div class="text-center">
                                         <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Tambah

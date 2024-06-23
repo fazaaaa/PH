@@ -21,8 +21,7 @@ class Penduduk extends Model
         'Agama',
         'Pendidikan_terakhir',
         'Jenis_bantuan',
-        'Penerima_bantuan',
-        'Jenis_bantuan_lain'
+        'Penerima_bantuan'
     ];
 
     public function pekerjaan()

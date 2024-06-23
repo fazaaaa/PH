@@ -289,11 +289,6 @@
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Penerima_bantuan</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Jenis_bantuan_lain</th>
-                                            <th class="text-secondary opacity-7"></th>
-                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($penduduk as $p)
@@ -335,9 +330,6 @@
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-0 text-sm">{{ $p->Penerima_bantuan }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="mb-0 text-sm">{{ $p->Jenis_bantuan_lain }}</h6>
                                                 </td>
                                                 <td class="align-middle">
                                                     <a href="{{ route('penduduk.edit', $p->id) }}"

@@ -54,6 +54,7 @@ class DatabaseSeeder extends Seeder
             [
                 'No_KK' => 213123,
                 'NIK' => 324323,
+                'pas_foto' => '',
                 'Nama_lengkap' => 'Rohidin Saepulloh',
                 'Hbg_kel' => 'Suami',
                 'JK' => 'laki-laki',
@@ -62,12 +63,12 @@ class DatabaseSeeder extends Seeder
                 'Agama' => 'Islam',
                 'Pendidikan_terakhir' => 'S1',
                 'Jenis_bantuan' => 'SKTM',
-                'Penerima_bantuan' => 'Ya',
-                'Jenis_bantuan_lain' => 'Tidak'
+                'Penerima_bantuan' => 'Ya'
             ],
             [
                 'No_KK' => 213124,
                 'NIK' => 324324,
+                'pas_foto' => '',
                 'Nama_lengkap' => 'Siti Nurjanah',
                 'Hbg_kel' => 'Istri',
                 'JK' => 'perempuan',
@@ -76,12 +77,12 @@ class DatabaseSeeder extends Seeder
                 'Agama' => 'Kristen',
                 'Pendidikan_terakhir' => 'SMA',
                 'Jenis_bantuan' => 'Bantuan Sosial',
-                'Penerima_bantuan' => 'Tidak',
-                'Jenis_bantuan_lain' => 'Ya'
+                'Penerima_bantuan' => 'Tidak'
             ],
             [
                 'No_KK' => 213125,
                 'NIK' => 324325,
+                'pas_foto' => '',
                 'Nama_lengkap' => 'Supriyanto',
                 'Hbg_kel' => 'Anak',
                 'JK' => 'laki-laki',
@@ -90,12 +91,12 @@ class DatabaseSeeder extends Seeder
                 'Agama' => 'Hindu',
                 'Pendidikan_terakhir' => 'SD',
                 'Jenis_bantuan' => 'Bantuan Pendidikan',
-                'Penerima_bantuan' => 'Ya',
-                'Jenis_bantuan_lain' => 'Tidak'
+                'Penerima_bantuan' => 'Ya'
             ],
             [
                 'No_KK' => 213126,
                 'NIK' => 324326,
+                'pas_foto' => '',
                 'Nama_lengkap' => 'Putra Jaya',
                 'Hbg_kel' => 'Ayah',
                 'JK' => 'laki-laki',
@@ -104,12 +105,12 @@ class DatabaseSeeder extends Seeder
                 'Agama' => 'Buddha',
                 'Pendidikan_terakhir' => 'D3',
                 'Jenis_bantuan' => 'Kartu Lansia',
-                'Penerima_bantuan' => 'Ya',
-                'Jenis_bantuan_lain' => 'Tidak'
+                'Penerima_bantuan' => 'Ya'
             ],
             [
                 'No_KK' => 213127,
                 'NIK' => 324327,
+                'pas_foto' => '',
                 'Nama_lengkap' => 'putri jaya',
                 'Hbg_kel' => 'Ibu',
                 'JK' => 'perempuan',
@@ -118,8 +119,7 @@ class DatabaseSeeder extends Seeder
                 'Agama' => 'Islam',
                 'Pendidikan_terakhir' => 'S2',
                 'Jenis_bantuan' => 'Bantuan Kesehatan',
-                'Penerima_bantuan' => 'Tidak',
-                'Jenis_bantuan_lain' => 'Ya'
+                'Penerima_bantuan' => 'Tidak'
             ]
         ];
 

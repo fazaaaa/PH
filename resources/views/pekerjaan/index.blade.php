@@ -266,6 +266,7 @@
                                                 <td>
                                                     <h6 class="mb-0 text-sm">{{ $p->pendapatan }}</h6>
                                                 </td>
+                                                <td>{{number_format($p->pendapatan,0,'','.')}}</td>
                                                 <td>
                                                     <h6 class="mb-0 text-sm">{{ $p->jumlah }}</h6>
                                                 </td>

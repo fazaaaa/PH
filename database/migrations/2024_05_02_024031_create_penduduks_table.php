@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('No_KK', 100);
             $table->bigInteger('NIK')->unique();
+            $table->string('pas_foto', 100);
             $table->string('Nama_lengkap', 150);
             $table->string('Hbg_kel', 50);
             $table->string('JK', 50);
@@ -24,7 +25,6 @@ return new class extends Migration
             $table->string('Pendidikan_terakhir', 50);
             $table->string('Jenis_bantuan', 50);
             $table->string('Penerima_bantuan', 50);
-            $table->string('Jenis_bantuan_lain', 150);
             $table->timestamps();
         });
     }
