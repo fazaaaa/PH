@@ -171,7 +171,7 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-link-text ms-1">RW</span>
+                        <span class="nav-link-text ms-1">AKUN RW</span>
                     </a>
                 </li>
             </ul>

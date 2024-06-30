@@ -33,7 +33,7 @@ class KondisiController extends Controller
 
     public function create()
     {
-        $penduduk = Penduduk::all();
+        $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('kondisi.create', compact('penduduk'));
     }
 
@@ -82,7 +82,7 @@ class KondisiController extends Controller
     public function edit($id)
     {
         $kondisi = KondisiRumah::find($id);
-        $penduduk = Penduduk::all();
+        $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('kondisi.edit', compact('kondisi', 'penduduk'));
     }
 

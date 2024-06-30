@@ -90,7 +90,7 @@ class RwController extends Controller
 
     public function createpekerjaan()
     {
-        $penduduk = Penduduk::all();
+        $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('rw.pekerjaan.create', compact('penduduk'));
     }
 
@@ -449,7 +449,7 @@ class RwController extends Controller
 
     public function creatependidikan()
     {
-        $penduduk = Penduduk::all();
+        $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('rw.pendidikan.create', compact('penduduk'));
     }
 
@@ -477,7 +477,7 @@ class RwController extends Controller
 
     public function createkondisi()
     {
-        $penduduk = Penduduk::all();
+        $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('rw.kondisi.create', compact('penduduk'));
     }
 

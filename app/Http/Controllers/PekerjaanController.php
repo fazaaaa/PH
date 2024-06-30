@@ -18,7 +18,7 @@ class PekerjaanController extends Controller
 
     public function create()
     {
-        $penduduk = Penduduk::all();
+        $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('pekerjaan.create', compact('penduduk'));
     }
 
@@ -372,7 +372,7 @@ class PekerjaanController extends Controller
     public function edit($id)
     {
         $pekerjaan = Pekerjaan::find($id);
-        $penduduk = Penduduk::all();
+        $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
         return view('pekerjaan.edit', compact('pekerjaan', 'penduduk'));
     }
 

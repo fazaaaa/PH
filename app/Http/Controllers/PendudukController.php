@@ -96,7 +96,8 @@ class PendudukController extends Controller
             'Agama' => 'required',
             'Pendidikan_terakhir' => 'required',
             'Jenis_bantuan' => 'required',
-            'Penerima_bantuan' => 'required'
+            'Penerima_bantuan' => 'required',
+            'Jenis_bantuan_lain' => 'required',
         ]);
 
         if ($request->hasFile('pas_foto')) {
@@ -117,7 +118,8 @@ class PendudukController extends Controller
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
                     'Jenis_bantuan' => $request->Jenis_bantuan,
-                    'Penerima_bantuan' => $request->Penerima_bantuan
+                    'Penerima_bantuan' => $request->Penerima_bantuan,
+                    'Jenis_bantuan_lain' => $request->Jenis_bantuan_lain
                 ]);
 
                 $penduduk->save();
@@ -148,7 +150,8 @@ class PendudukController extends Controller
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
                     'Jenis_bantuan' => $request->Jenis_bantuan,
-                    'Penerima_bantuan' => $request->Penerima_bantuan
+                    'Penerima_bantuan' => $request->Penerima_bantuan,
+                    'Jenis_bantuan_lain' => $request->Jenis_bantuan_lain
                 ]);
 
                 $penduduk->save();
@@ -195,7 +198,8 @@ class PendudukController extends Controller
             'Agama' => $request->Agama,
             'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
             'Jenis_bantuan' => $request->Jenis_bantuan,
-            'Penerima_bantuan' => $request->Penerima_bantuan
+            'Penerima_bantuan' => $request->Penerima_bantuan,
+            'Jenis_bantuan_lain' => $request->Jenis_bantuan_lain
         ]);
 
         return redirect()->route('penduduk.index')->with('success', 'Data berhasil diubah');
