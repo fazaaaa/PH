@@ -8,6 +8,7 @@ use App\Models\KondisiRumah;
 use App\Models\Pekerjaan;
 use App\Models\Pendidikan;
 use App\Models\Penduduk;
+use App\Models\JenisBantuan;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Phpml\Classification\NaiveBayes;
@@ -31,9 +32,12 @@ class PendudukController extends Controller
                 ->orWhere('tgl_lahir', 'like', "%{$search}%")
                 ->orWhere('Agama', 'like', "%{$search}%")
                 ->orWhere('Pendidikan_terakhir', 'like', "%{$search}%")
-                ->orWhere('Jenis_bantuan', 'like', "%{$search}%")
-                ->orWhere('Penerima_bantuan', 'like', "%{$search}%")
-                ->orWhere('Jenis_bantuan_lain', 'like', "%{$search}%");
+                ->orWhere('Jenis_bantuan_id', function($query) use ($search) {
+                    $query->select('id')
+                    ->from('jenis_bantuan')
+                    ->where('nama_bantuan', 'like', "%{$search}%");
+                })
+                ->orWhere('Penerima_bantuan', 'like', "%{$search}%");
         }
 
         $penduduk = $query->get();
@@ -68,6 +72,8 @@ class PendudukController extends Controller
 
     public function cetakklasifikasi(Request $request)
     {
+        $query = Penduduk::query();
+        $query->whereNotIn('id', [1, 2, 3, 4, 5]);
         $pendudukIds = Penduduk::where('Nama_lengkap', 'like', "%" . $request->nama . "%")->pluck('id');
         $data = Klasifikasi::with('penduduk')->whereIn('id_penduduk', $pendudukIds)->get();
         $kondisi = KondisiRumah::with('penduduk')->whereIn('id_penduduk', $pendudukIds)->get();
@@ -95,9 +101,8 @@ class PendudukController extends Controller
             'tgl_lahir' => 'required|date',
             'Agama' => 'required',
             'Pendidikan_terakhir' => 'required',
-            'Jenis_bantuan' => 'required',
-            'Penerima_bantuan' => 'required',
-            'Jenis_bantuan_lain' => 'required',
+            'jenis_bantuan_id' => 'required',
+            'Penerima_bantuan' => 'required'
         ]);
 
         if ($request->hasFile('pas_foto')) {
@@ -117,9 +122,8 @@ class PendudukController extends Controller
                     'tgl_lahir' => $request->tgl_lahir,
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-                    'Jenis_bantuan' => $request->Jenis_bantuan,
-                    'Penerima_bantuan' => $request->Penerima_bantuan,
-                    'Jenis_bantuan_lain' => $request->Jenis_bantuan_lain
+                    'kenis_bantuan_id' => $request->jenis_bantuan_id,
+                    'Penerima_bantuan' => $request->Penerima_bantuan
                 ]);
 
                 $penduduk->save();
@@ -149,9 +153,8 @@ class PendudukController extends Controller
                     'tgl_lahir' => $request->tgl_lahir,
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-                    'Jenis_bantuan' => $request->Jenis_bantuan,
-                    'Penerima_bantuan' => $request->Penerima_bantuan,
-                    'Jenis_bantuan_lain' => $request->Jenis_bantuan_lain
+                    'jenis_bantuan' => $request->jenis_bantuan,
+                    'Penerima_bantuan' => $request->Penerima_bantuan
                 ]);
 
                 $penduduk->save();
@@ -197,9 +200,8 @@ class PendudukController extends Controller
             'tgl_lahir' => $request->tgl_lahir,
             'Agama' => $request->Agama,
             'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-            'Jenis_bantuan' => $request->Jenis_bantuan,
-            'Penerima_bantuan' => $request->Penerima_bantuan,
-            'Jenis_bantuan_lain' => $request->Jenis_bantuan_lain
+            'jenis_bantuan_id' => $request->jenis_bantuan_id,
+            'Penerima_bantuan' => $request->Penerima_bantuan
         ]);
 
         return redirect()->route('penduduk.index')->with('success', 'Data berhasil diubah');

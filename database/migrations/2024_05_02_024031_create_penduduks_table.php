@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->string('Agama', 100);
             $table->string('Pendidikan_terakhir', 50);
-            $table->unsignedBigInteger('jenis_bantuan_id'); // Foreign key
+            $table->unsignedBigInteger('jenis_bantuan_id')->nullable();
             $table->string('Penerima_bantuan', 50);
             $table->timestamps();
         });

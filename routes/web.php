@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JenisBantuanController;
 use App\Http\Controllers\KlasifikasiController;
 use App\Http\Controllers\KondisiController;
 use App\Http\Controllers\PekerjaanController;
@@ -70,7 +71,13 @@ Route::middleware(['auth', 'role:kph'])->group(function () {
     Route::put('/updatepekerjaan/{id}', [PekerjaanController::class, 'update'])->name('pekerjaan.update');
     Route::delete('/delpekerjaan/{id}', [PekerjaanController::class, 'destroy'])->name('pekerjaan.delete');
 
-    // Pendidikan
+    // Jenisbantuan
+    Route::get('/jenisbantuan', [JenisBantuanController::class, 'index'])->name('jenisbantuan.index');
+    Route::get('/addjenisbantuan', [JenisBantuanController::class, 'create'])->name('jenisbantuan.add');
+    Route::post('/storejenisbantuan', [JenisBantuanController::class, 'store'])->name('jenisbantuan.store');
+    Route::get('/editjenisbantuan/{id}', [JenisBantuanController::class, 'edit'])->name('jenisbantuan.edit');
+    Route::put('/updatejenisbantuan/{id}', [JenisBantuanController::class, 'update'])->name('jenisbantuan.update');
+    Route::delete('/deljenisbantuan/{id}', [JenisBantuanController::class, 'destroy'])->name('jenisbantuan.delete');
 
     // Kondisi
     Route::get('/kondisi', [KondisiController::class, 'index'])->name('kondisi.index');

@@ -5,11 +5,13 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Hasil;
+use App\Models\JenisBantuan;
 use App\Models\Klasifikasi;
 use App\Models\Pekerjaan;
 use App\Models\Penduduk;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,12 +20,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        DB::table('users')->truncate();
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+         // Disable foreign key checks for this connection before running seeders
+       DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+       JenisBantuan::create([
+        ['nama' => 'PKH', 'created_at' => now(), 'updated_at' => now()],
+        ['nama' => 'BPNT', 'created_at' => now(), 'updated_at' => now()],
+    ]);
 
         User::create([
             'name' => 'Admin ',
@@ -62,7 +73,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '2024-05-08',
                 'Agama' => 'Islam',
                 'Pendidikan_terakhir' => 'S1',
-                'Jenis_bantuan' => 'SKTM',
+                'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Ya'
             ],
             [
@@ -76,7 +87,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '2023-04-10',
                 'Agama' => 'Kristen',
                 'Pendidikan_terakhir' => 'SMA',
-                'Jenis_bantuan' => 'Bantuan Sosial',
+                'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Tidak'
             ],
             [
@@ -90,7 +101,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '2021-03-15',
                 'Agama' => 'Hindu',
                 'Pendidikan_terakhir' => 'SD',
-                'Jenis_bantuan' => 'Bantuan Pendidikan',
+                'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Ya'
             ],
             [
@@ -104,7 +115,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '1975-02-20',
                 'Agama' => 'Buddha',
                 'Pendidikan_terakhir' => 'D3',
-                'Jenis_bantuan' => 'Kartu Lansia',
+                'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Ya'
             ],
             [
@@ -118,14 +129,14 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '1980-07-25',
                 'Agama' => 'Islam',
                 'Pendidikan_terakhir' => 'S2',
-                'Jenis_bantuan' => 'Bantuan Kesehatan',
+                'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Tidak'
             ]
         ];
 
         foreach ($pendudukData as $penduduk) {
             Penduduk::create($penduduk);
-        }
+        }  
 
         Pekerjaan::create([
             'id_penduduk' => 1,
@@ -246,5 +257,8 @@ class DatabaseSeeder extends Seeder
             'status' => 'Tidak Bekerja',
             'keterangan' => 'Layak'
         ]);
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
+    
 }
