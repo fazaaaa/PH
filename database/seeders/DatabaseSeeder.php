@@ -63,6 +63,10 @@ class DatabaseSeeder extends Seeder
             'nama_bantuan' => 'BPNT', 
             'created_at' => now(), 
             'updated_at' => now()]);
+            JenisBantuan::create([
+                'nama_bantuan' => 'Tidak Menerima Bantuan', 
+                'created_at' => now(), 
+                'updated_at' => now()]);
 
         $pendudukData = [
             [

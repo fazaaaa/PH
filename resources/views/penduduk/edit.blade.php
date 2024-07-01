@@ -357,26 +357,48 @@
 
                                 <label for="pendidikan_terakhir">Pendidikan Terakhir</label>
                                 <div class="mb-3">
-                                    <input type="text" id="pendidikan_terakhir" name="Pendidikan_terakhir"
-                                        class="form-control" placeholder="Pendidikan Terakhir"
-                                        aria-label="Pendidikan Terakhir"
-                                        value="{{ $penduduk->Pendidikan_terakhir }}">
+                                <select id="pendidikan_terakhir" name="pendidikan_terakhir" class="form-control" aria-label="pendidikan_terakhir">
+                                        <option value="">Pilih Pendidikan Terakhir</option>
+                                        <option value="SD" {{ $penduduk->Pendidikan_terakhir == 'SD' ? 'selected' : '' }}>
+                                            Islam</option>
+                                        <option value="SMP" {{ $penduduk->Pendidikan_terakhir == 'SMP' ? 'selected' : '' }}>
+                                            Kristen</option>
+                                        <option value="SMA" {{ $penduduk->Pendidikan_terakhir == 'SMA' ? 'selected' : '' }}>
+                                            Katolik</option>
+                                        <option value="D3" {{ $penduduk->Pendidikan_terakhir == 'D3' ? 'selected' : '' }}>
+                                            Hindu</option>
+                                        <option value="S1" {{ $penduduk->Pendidikan_terakhir == 'S1' ? 'selected' : '' }}>
+                                            Buddha</option>
+                                        <option value="S2"
+                                            {{ $penduduk->Agama == 'S2' ? 'selected' : '' }}>Konghucu</option>
+                                        <option value="S3" {{ $penduduk->Agama == 'S3' ? 'selected' : '' }}>
+                                            Buddha</option>
+                                        <option value="Tidak" {{ $penduduk->Agama == 'Tidak' ? 'selected' : '' }}>
+                                            Buddha</option>
+                                    </select>
                                 </div>
 
-                                <label for="jenis_bantuan">Jenis Bantuan</label>
-                                <div class="mb-3">
-                                    <input type="text" id="jenis_bantuan" name="Jenis_bantuan"
-                                        class="form-control" placeholder="Jenis Bantuan" aria-label="Jenis Bantuan"
-                                        value="{{ $penduduk->Jenis_bantuan }}">
-                                </div>
-
+                                <label for="jenis_bantuan_id">Jenis Bantuan</label>
+                                    <div class="mb-3">
+                                        <select class="form-control{{ $errors->has('jenis_bantuan_id') ? ' has-error' : '' }}" name="jenis_bantuan_id">
+                                            <option disabled selected>--Pilih Jenis bantuan--</option>
+                                            @foreach ($jenis_bantuan_id as $p)
+                                                <option value="{{ $p->id }}">{{ $p->nama_bantuan }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('jenis_bantuan_id'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('jenis_bantuan_id') }}</strong>
+                                            </span>
+                                         @endif
+                                    </div>
+                                    
                                 <label for="penerima_bantuan">Penerima Bantuan</label>
                                 <div class="mb-3">
                                     <input type="text" id="penerima_bantuan" name="Penerima_bantuan"
                                         class="form-control" placeholder="Penerima Bantuan"
                                         aria-label="Penerima Bantuan" value="{{ $penduduk->Penerima_bantuan }}">
                                 </div>
-
                                 <div class="mb-3">
                                     <div class="text-center">
                                         <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Ubah

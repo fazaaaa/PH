@@ -85,15 +85,15 @@ class PendudukController extends Controller
 
     public function create()
     {
-        $jenisbantuan = JenisBantuan::all();
-        return view('penduduk.create', compact('jenisbantuan'));
+        $jenis_bantuan_id = JenisBantuan::all();
+        return view('penduduk.create', compact('jenis_bantuan_id'));
     }
 
     public function store(Request $request)
     {
         // Log::info($request->all());
 
-        $validatedData = $request->validate([
+        $request->validate([
             'No_KK' => 'required',
             'NIK' => 'required',
             'pas_foto' =>
@@ -105,7 +105,7 @@ class PendudukController extends Controller
             'tgl_lahir' => 'required|date',
             'Agama' => 'required',
             'Pendidikan_terakhir' => 'required',
-            'jenis_bantuan_id' => 'required',
+            'jenis_bantuan_id' => 'required|exists:jenis_bantuans,id|integer',
             'Penerima_bantuan' => 'required'
         ]);
 
@@ -126,7 +126,7 @@ class PendudukController extends Controller
                     'tgl_lahir' => $request->tgl_lahir,
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-                    'jenis_bantuan_id' => $request->jenisbantuan->nama_bantuan,
+                    'jenis_bantuan_id' => $request->jenis_bantuan_id,
                     'Penerima_bantuan' => $request->Penerima_bantuan
                 ]);
 
@@ -157,7 +157,7 @@ class PendudukController extends Controller
                     'tgl_lahir' => $request->tgl_lahir,
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-                    'jenis_bantuan_id' => $request->jenisbantuan->nama_bantuan,
+                    'jenis_bantuan_id' => $request->jenis_bantuan_id,
                     'Penerima_bantuan' => $request->Penerima_bantuan
                 ]);
 
@@ -182,8 +182,9 @@ class PendudukController extends Controller
 
     public function edit($id)
     {
+        $jenis_bantuan_id = JenisBantuan::all($id);
         $penduduk = Penduduk::find($id);
-        return view('penduduk.edit', compact('penduduk'));
+        return view('penduduk.edit', compact('penduduk','jenis_bantuan_id'));
     }
 
     public function update(Request $request, $id)
@@ -204,7 +205,7 @@ class PendudukController extends Controller
             'tgl_lahir' => $request->tgl_lahir,
             'Agama' => $request->Agama,
             'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-            'jenis_bantuan_id' => $request->jenisbantuan->nama_bantuan,
+            'jenis_bantuan_id' => $request->jenis_bantuan_id,
             'Penerima_bantuan' => $request->Penerima_bantuan
         ]);
 

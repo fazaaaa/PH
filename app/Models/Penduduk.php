@@ -46,6 +46,6 @@ class Penduduk extends Model
 
     public function jenisBantuan()
     {
-        return $this->belongsTo(JenisBantuan::class, 'jenis_bantuan_id');
+        return $this->belongsTo(JenisBantuan::class);
     }
 }

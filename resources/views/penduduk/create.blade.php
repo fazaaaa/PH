@@ -340,7 +340,7 @@
                                 <div class="mb-3">
                                     <select id="pendidikan_terakhir" name="Pendidikan_terakhir" class="form-control"
                                         aria-label="pendidikan_terakhir">
-                                        <option value="" readonly>Pilih Pendidikan</option>
+                                        <option value="" >Pilih Pendidikan</option>
                                         <option value="SD">SD</option>
                                         <option value="SMP">SMP</option>
                                         <option value="SMA">SMA</option>
@@ -354,22 +354,21 @@
 
                                 <label for="jenis_bantuan">Jenis Bantuan</label>
                                 <div class="mb-3">
-                                    <select id="jenis_bantuan" name="jenis_bantuan_id" class="form-control"
-                                        aria-label="jenis_bantuan">
+                                    <select id="jenis_bantuan_id" name="jenis_bantuan_id" class="form-control"
+                                        aria-label="jenis_bantuan_id">
                                         <option readonly value="">Pilih Jenis Bantuan</option>
-                                        @foreach ($jenisbantuan as $p)
+                                        @foreach ($jenis_bantuan_id as $p)
                                             <option value="{{ $p->id }}">{{ $p->nama_bantuan }}</option>
                                         @endforeach
-                                        <option value="Tidak">Tidak Menerima Bantuan</option>
                                     </select>
                                 </div>
 
                                 <label for="penerima_bantuan">Penerima Bantuan</label>
                                 <div class="mb-3">
-                                <select id="penerima_bantuan" name="penerima_bantuan" class="form-control"
-                                        aria-label="penerima_bantuan">
-                                        <option value="" readonly>Pilih Penerima Bantuan</option>
-                                        <option value="Iya">IYA</option>
+                                <select id="penerima_bantuan" name="Penerima_bantuan" class="form-control"
+                                        aria-label="Penerima Bantuan">
+                                        <option value="">Pilih Penerima Bantuan</option>
+                                        <option value="Iya">Iya</option>
                                         <option value="Tidak">Tidak</option>
                                     </select>
                                 </div>
