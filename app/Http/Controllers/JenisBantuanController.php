@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenisBantuan;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class JenisBantuanController extends Controller
 {
@@ -22,8 +23,8 @@ class JenisBantuanController extends Controller
      */
     public function create()
     {
-        $jenisbantuan = JenisBantuan::all();
-        return view('jenisbantuan.create', compact('jenisbantuan'));
+        $penduduk = Penduduk::all();
+        return view('jenisbantuan.create', compact('penduduk'));
     }
 
     /**
@@ -31,16 +32,18 @@ class JenisBantuanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        Log::info($request->all());
+
+        $this->validate($request,[
             'nama_bantuan' => 'required',
         ]);
 
-        try {
-            JenisBantuan::create($request->all());
-            return redirect()->route('jenisbantuan.index')->with('success', 'Data berhasil ditambahkan');
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data. Error: ' . $e->getMessage());
-        }
+        $jenisbantuan = New JenisBantuan();
+        $jenisbantuan->nama_bantuan = $request->nama_bantuan;
+        $jenisbantuan->save();
+
+        return redirect()->route('jenisbantuan.index')->with('success', 'Data berhasil ditambahkan');
+
     }
 
     /**

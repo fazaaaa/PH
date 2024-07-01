@@ -20,21 +20,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        DB::table('users')->truncate();
-        // \App\Models\User::factory(10)->create();
+        DB::table('jenis_bantuans')->truncate();
+        DB::table('penduduks')->truncate();
 
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-         // Disable foreign key checks for this connection before running seeders
-       DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
-       JenisBantuan::create([
-        ['nama' => 'PKH', 'created_at' => now(), 'updated_at' => now()],
-        ['nama' => 'BPNT', 'created_at' => now(), 'updated_at' => now()],
-    ]);
 
         User::create([
             'name' => 'Admin ',
@@ -59,7 +54,15 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('password123')
             ]);
         }
-
+        
+        JenisBantuan::create([
+            'nama_bantuan' => 'PKH', 
+            'created_at' => now(), 
+            'updated_at' => now()]);
+        JenisBantuan::create([
+            'nama_bantuan' => 'BPNT', 
+            'created_at' => now(), 
+            'updated_at' => now()]);
 
         $pendudukData = [
             [
@@ -258,7 +261,6 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Layak'
         ]);
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
     
 }

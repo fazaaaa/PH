@@ -256,19 +256,18 @@
                     <div class="card mb-4">
                         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                             <h6>Tambah Data Jenis Bantuan</h6>
-                            <a href="{{ route('pendidikan.index') }}" class="btn btn-primary">Kembali</a>
+                            <a href="{{ route('jenisbantuan.index') }}" class="btn btn-primary">Kembali</a>
                         </div>
 
                         <div class="card-body px-0 pt-0 pb-2">
-                            <form role="form" class="form-group mx-10 my-6"
-                                action="{{ route('jenisbantuan.store') }}" method="POST">
+                        <form role="form" class="form-group mx-10 my-6" action="{{ route('jenisbantuan.store') }}"
+                        method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <!-- <label for="jk">Jenis Bantuan</label>                                -->
-                                <label for="jenis_bantuan">Jenis Bantuan</label>
+                                <label for="nama_bantuan">Nama Bantuan</label>
                                 <div class="mb-3">
-                                    <input type="text" id="jenis_bantuan" name="jenis_bantuan"
-                                        class="form-control" placeholder="jenis_bantuan"
-                                        aria-label="jenis_bantuan">
+                                    <input type="text" id="nama_bantuan" name="nama_bantuan"
+                                        class="form-control" placeholder="Nama Bantuan"
+                                        aria-label="nama_bantuan">
                                 </div>
                                 <div class="mb-3">
                                     <div class="text-center">
@@ -277,6 +276,15 @@
                                         </button>
                                     </div>
                                 </div>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </form>
                         </div>
                     </div>

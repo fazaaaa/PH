@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link  active" href="{{ route('penduduk.index') }}">
+                    <a class="nav-link active" href="{{ route('penduduk.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -338,8 +338,8 @@
 
                                 <label for="pendidikan_terakhir">Pendidikan Terakhir</label>
                                 <div class="mb-3">
-                                    <select id="agama" name="Pendidikan_terakhir" class="form-control"
-                                        aria-label="Agama">
+                                    <select id="pendidikan_terakhir" name="Pendidikan_terakhir" class="form-control"
+                                        aria-label="pendidikan_terakhir">
                                         <option value="" readonly>Pilih Pendidikan</option>
                                         <option value="SD">SD</option>
                                         <option value="SMP">SMP</option>
@@ -354,15 +354,24 @@
 
                                 <label for="jenis_bantuan">Jenis Bantuan</label>
                                 <div class="mb-3">
-                                    <input type="text" id="jenis_bantuan" name="Jenis_bantuan"
-                                        class="form-control" placeholder="Jenis Bantuan" aria-label="Jenis Bantuan">
+                                    <select id="jenis_bantuan" name="jenis_bantuan_id" class="form-control"
+                                        aria-label="jenis_bantuan">
+                                        <option readonly value="">Pilih Jenis Bantuan</option>
+                                        @foreach ($jenisbantuan as $p)
+                                            <option value="{{ $p->id }}">{{ $p->nama_bantuan }}</option>
+                                        @endforeach
+                                        <option value="Tidak">Tidak Menerima Bantuan</option>
+                                    </select>
                                 </div>
 
                                 <label for="penerima_bantuan">Penerima Bantuan</label>
                                 <div class="mb-3">
-                                    <input type="text" id="penerima_bantuan" name="Penerima_bantuan"
-                                        class="form-control" placeholder="Penerima Bantuan"
-                                        aria-label="Penerima Bantuan">
+                                <select id="penerima_bantuan" name="penerima_bantuan" class="form-control"
+                                        aria-label="penerima_bantuan">
+                                        <option value="" readonly>Pilih Penerima Bantuan</option>
+                                        <option value="Iya">IYA</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <div class="text-center">
@@ -371,6 +380,15 @@
                                         </button>
                                     </div>
                                 </div>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </form>
                         </div>
                     </div>

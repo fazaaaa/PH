@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('pekerjaan.index') }}">
+                    <a class="nav-link" href="{{ route('pekerjaan.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -179,7 +179,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('jenisbantuan.index') }}">
+                    <a class="nav-link active " href="{{ route('jenisbantuan.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -218,9 +218,9 @@
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark"
                                 href="javascript:;">Pages</a>
                         </li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pekerjaan</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Jenis Bantuan</li>
                     </ol>
-                    <h6 class="font-weight-bolder mb-0">Pekerjaan</h6>
+                    <h6 class="font-weight-bolder mb-0">Jenis Bantuan</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -255,8 +255,8 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                            <h6>Data Pekerjaan</h6>
-                            <a href="{{ route('pekerjaan.add') }}" class="btn btn-primary">Tambah Pekerjaan</a>
+                            <h6>Data Jenis Bantuan</h6>
+                            <a href="{{ route('jenisbantuan.add') }}" class="btn btn-primary">Tambah Jenis Bantuan</a>
                         </div>
 
                         <div class="card-body px-0 pt-0 pb-2">
@@ -266,19 +266,24 @@
                                         <tr>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Nama Bantuan</th>
+                                                Id
+                                            </th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Nama Bantuan
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($jenisbantuan as $p)
                                             <tr>
                                                 <td>
-                                                    <h6 class="mb-0 text-sm">{{ $p->jenis_bantuan }}</h6>
+                                                    <h6 class="mb-0 text-sm">{{ $p->id }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="mb-0 text-sm">{{ $p->nama_bantuan }}</h6>
                                                 </td>
                                                 <td class="align-middle">
-                                                    <a href="{{ route('jenisbantuan.edit', $p->id) }}"
-                                                        class="text-secondary font-weight-bold text-xs btn btn-warning">Edit
-                                                    </a>
                                                     <form action="{{ route('jenisbantuan.delete', $p->id) }}"
                                                         method="POST">
                                                         @csrf

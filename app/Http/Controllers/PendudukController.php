@@ -12,6 +12,7 @@ use App\Models\JenisBantuan;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Phpml\Classification\NaiveBayes;
+use Illuminate\Support\Facades\Log;
 
 class PendudukController extends Controller
 {
@@ -32,7 +33,7 @@ class PendudukController extends Controller
                 ->orWhere('tgl_lahir', 'like', "%{$search}%")
                 ->orWhere('Agama', 'like', "%{$search}%")
                 ->orWhere('Pendidikan_terakhir', 'like', "%{$search}%")
-                ->orWhere('Jenis_bantuan_id', function($query) use ($search) {
+                ->orWhere('jenis_bantuan_id', function($query) use ($search) {
                     $query->select('id')
                     ->from('jenis_bantuan')
                     ->where('nama_bantuan', 'like', "%{$search}%");
@@ -84,11 +85,14 @@ class PendudukController extends Controller
 
     public function create()
     {
-        return view('penduduk.create');
+        $jenisbantuan = JenisBantuan::all();
+        return view('penduduk.create', compact('jenisbantuan'));
     }
 
     public function store(Request $request)
     {
+        // Log::info($request->all());
+
         $validatedData = $request->validate([
             'No_KK' => 'required',
             'NIK' => 'required',
@@ -122,7 +126,7 @@ class PendudukController extends Controller
                     'tgl_lahir' => $request->tgl_lahir,
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-                    'kenis_bantuan_id' => $request->jenis_bantuan_id,
+                    'jenis_bantuan_id' => $request->jenisbantuan->nama_bantuan,
                     'Penerima_bantuan' => $request->Penerima_bantuan
                 ]);
 
@@ -153,7 +157,7 @@ class PendudukController extends Controller
                     'tgl_lahir' => $request->tgl_lahir,
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-                    'jenis_bantuan' => $request->jenis_bantuan,
+                    'jenis_bantuan_id' => $request->jenisbantuan->nama_bantuan,
                     'Penerima_bantuan' => $request->Penerima_bantuan
                 ]);
 
@@ -200,7 +204,7 @@ class PendudukController extends Controller
             'tgl_lahir' => $request->tgl_lahir,
             'Agama' => $request->Agama,
             'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-            'jenis_bantuan_id' => $request->jenis_bantuan_id,
+            'jenis_bantuan_id' => $request->jenisbantuan->nama_bantuan,
             'Penerima_bantuan' => $request->Penerima_bantuan
         ]);
 

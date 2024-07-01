@@ -75,8 +75,8 @@ Route::middleware(['auth', 'role:kph'])->group(function () {
     Route::get('/jenisbantuan', [JenisBantuanController::class, 'index'])->name('jenisbantuan.index');
     Route::get('/addjenisbantuan', [JenisBantuanController::class, 'create'])->name('jenisbantuan.add');
     Route::post('/storejenisbantuan', [JenisBantuanController::class, 'store'])->name('jenisbantuan.store');
-    Route::get('/editjenisbantuan/{id}', [JenisBantuanController::class, 'edit'])->name('jenisbantuan.edit');
-    Route::put('/updatejenisbantuan/{id}', [JenisBantuanController::class, 'update'])->name('jenisbantuan.update');
+    // Route::get('/editjenisbantuan/{id}', [JenisBantuanController::class, 'edit'])->name('jenisbantuan.edit');
+    // Route::put('/updatejenisbantuan/{id}', [JenisBantuanController::class, 'update'])->name('jenisbantuan.update');
     Route::delete('/deljenisbantuan/{id}', [JenisBantuanController::class, 'destroy'])->name('jenisbantuan.delete');
 
     // Kondisi
