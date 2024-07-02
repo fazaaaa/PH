@@ -355,26 +355,26 @@
                                     </select>
                                 </div>
 
-                                <label for="pendidikan_terakhir">Pendidikan Terakhir</label>
+                                <label for="Pendidikan_terakhir">Pendidikan Terakhir</label>
                                 <div class="mb-3">
-                                <select id="pendidikan_terakhir" name="pendidikan_terakhir" class="form-control" aria-label="pendidikan_terakhir">
+                                <select id="Pendidikan_terakhir" name="Pendidikan_terakhir" class="form-control" aria-label="Pendidikan_terakhir">
                                         <option value="">Pilih Pendidikan Terakhir</option>
                                         <option value="SD" {{ $penduduk->Pendidikan_terakhir == 'SD' ? 'selected' : '' }}>
-                                            Islam</option>
+                                            SD</option>
                                         <option value="SMP" {{ $penduduk->Pendidikan_terakhir == 'SMP' ? 'selected' : '' }}>
-                                            Kristen</option>
+                                            SMP</option>
                                         <option value="SMA" {{ $penduduk->Pendidikan_terakhir == 'SMA' ? 'selected' : '' }}>
-                                            Katolik</option>
+                                            SMA</option>
                                         <option value="D3" {{ $penduduk->Pendidikan_terakhir == 'D3' ? 'selected' : '' }}>
-                                            Hindu</option>
+                                            D3</option>
                                         <option value="S1" {{ $penduduk->Pendidikan_terakhir == 'S1' ? 'selected' : '' }}>
-                                            Buddha</option>
+                                            S1</option>
                                         <option value="S2"
-                                            {{ $penduduk->Agama == 'S2' ? 'selected' : '' }}>Konghucu</option>
-                                        <option value="S3" {{ $penduduk->Agama == 'S3' ? 'selected' : '' }}>
-                                            Buddha</option>
-                                        <option value="Tidak" {{ $penduduk->Agama == 'Tidak' ? 'selected' : '' }}>
-                                            Buddha</option>
+                                            {{ $penduduk->Agama == 'S2' ? 'selected' : '' }}>S2</option>
+                                        <option value="S3" {{ $penduduk->Pendidikan_terakhir == 'S3' ? 'selected' : '' }}>
+                                            S3</option>
+                                        <option value="Tidak" {{ $penduduk->Pendidikan_terakhir == 'Tidak' ? 'selected' : '' }}>
+                                            Tidak</option>
                                     </select>
                                 </div>
 

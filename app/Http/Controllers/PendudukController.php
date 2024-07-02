@@ -182,7 +182,7 @@ class PendudukController extends Controller
 
     public function edit($id)
     {
-        $jenis_bantuan_id = JenisBantuan::all($id);
+        $jenis_bantuan_id = JenisBantuan::all();
         $penduduk = Penduduk::find($id);
         return view('penduduk.edit', compact('penduduk','jenis_bantuan_id'));
     }
