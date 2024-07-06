@@ -6,7 +6,7 @@ use App\Models\Hasil;
 use App\Models\Klasifikasi;
 use App\Models\KondisiRumah;
 use App\Models\Pekerjaan;
-use App\Models\Pendidikan;
+use App\Models\JenisBantuan;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Phpml\Classification\NaiveBayes;
@@ -21,7 +21,8 @@ class RwController extends Controller
 
     public function creatependuduk()
     {
-        return view('rw.penduduk.create');
+        $jenis_bantuan_id = JenisBantuan::all();
+        return view('rw.penduduk.create', compact('jenis_bantuan_id'));
     }
 
     public function storependuduk(Request $request)
@@ -38,9 +39,8 @@ class RwController extends Controller
             'tgl_lahir' => 'required|date',
             'Agama' => 'required',
             'Pendidikan_terakhir' => 'required',
-            'Jenis_bantuan' => 'required',
+            'jenis_bantuan_id' => 'required',
             'Penerima_bantuan' => 'required',
-            'Jenis_bantuan_lain' => 'required',
         ]);
 
         if ($request->hasFile('pas_foto')) {
@@ -61,9 +61,8 @@ class RwController extends Controller
                 'tgl_lahir' => $request->tgl_lahir,
                 'Agama' => $request->Agama,
                 'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-                'Jenis_bantuan' => $request->Jenis_bantuan,
-                'Penerima_bantuan' => $request->Penerima_bantuan,
-                'Jenis_bantuan_lain' => $request->Jenis_bantuan_lain
+                'Jenis_bantuan' => $request->jenis_bantuan_id,
+                'Penerima_bantuan' => $request->Penerima_bantuan
             ]);
 
             $penduduk->save();
@@ -441,33 +440,33 @@ class RwController extends Controller
         return ceil($entropy * 1000) / 1000;
     }
 
-    public function indexpendidikan()
-    {
-        $pendidikan = Pendidikan::with('penduduk')->get();
-        return view('rw.pendidikan.index', compact('pendidikan'));
-    }
+    // public function indexpendidikan()
+    // {
+    //     $pendidikan = Pendidikan::with('penduduk')->get();
+    //     return view('rw.pendidikan.index', compact('pendidikan'));
+    // }
 
-    public function creatependidikan()
-    {
-        $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
-        return view('rw.pendidikan.create', compact('penduduk'));
-    }
+    // public function creatependidikan()
+    // {
+    //     $penduduk = Penduduk::whereNotIn('id', [1, 2, 3, 4, 5])->get();
+    //     return view('rw.pendidikan.create', compact('penduduk'));
+    // }
 
-    public function storependidikan(Request $request)
-    {
-        $request->validate([
-            'id_penduduk' => 'required',
-            'Nama' => 'required',
-            'Pendidikan_terakhir' => 'required',
-        ]);
+    // public function storependidikan(Request $request)
+    // {
+    //     $request->validate([
+    //         'id_penduduk' => 'required',
+    //         'Nama' => 'required',
+    //         'Pendidikan_terakhir' => 'required',
+    //     ]);
 
-        try {
-            Pendidikan::create($request->all());
-            return redirect()->route('rw.pendidikan.index')->with('success', 'Data berhasil ditambahkan');
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data. Error: ' . $e->getMessage());
-        }
-    }
+    //     try {
+    //         Pendidikan::create($request->all());
+    //         return redirect()->route('rw.pendidikan.index')->with('success', 'Data berhasil ditambahkan');
+    //     } catch (\Exception $e) {
+    //         return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data. Error: ' . $e->getMessage());
+    //     }
+    // }
 
     public function indexkondisi()
     {
@@ -531,6 +530,6 @@ class RwController extends Controller
         $klasifikasis = Klasifikasi::with('penduduk')->whereNotIn('id_penduduk', [1, 2, 3, 4, 5])->get();
 
         // Return the view with these filtered collections
-        return view('klasifikasi.index', compact('hasils', 'klasifikasis'));
+        return view('rw.klasifikasi.index', compact('hasils', 'klasifikasis'));
     }
 }

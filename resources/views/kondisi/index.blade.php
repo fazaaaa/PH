@@ -252,14 +252,18 @@
                     <div class="card mb-4">
                         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                             <h6>Data Kondisi Rumah</h6>
-                            <form action="{{ url('/kondisi') }}" method="GET"
-                                class="d-flex me-2 align-items-center">
-                                <input type="text" name="search" class="form-control me-2"
-                                    placeholder="Cari...">
+                            @if (session('error'))
+                            <div class="alert alert-danger text-white">
+                                {{ session('error') }}
+                            </div>
+                            @endif
+                            <form action="{{ url('/kondisi') }}" method="GET" class="d-flex me-2 align-items-center">
+                                <input type="text" name="search" class="form-control me-2" placeholder="Cari...">
                                 <button type="submit" class="btn btn-primary">Cari</button>
                             </form>
                             <a href="{{ route('kondisi.add') }}" class="btn btn-primary">Tambah Kondisi</a>
                         </div>
+                        <!-- </div> -->
 
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -268,7 +272,7 @@
                                         <tr>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                NIK</th>
+                                                Nama Lengkap</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Luas Lantai</th>
@@ -294,13 +298,16 @@
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 foto_rumah</th>
                                             <th class="text-secondary opacity-7"></th>
+                                            @if (auth()->user()->role == 'kph')
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Aksi</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($kondisi as $p)
                                             <tr>
                                                 <td>
-                                                    <h6 class="mb-0 text-sm">{{ $p->penduduk->NIK }}</h6>
+                                                    <h6 class="mb-0 text-sm">{{ $p->penduduk->Nama_lengkap }}</h6>
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-0 text-sm">{{ $p->Luas_lantai }}</h6>
@@ -328,6 +335,7 @@
                                                     <img src="{{ asset('storage/foto_rumah/' . $p->foto_rumah) }}"
                                                         alt="" style="width: 100px">
                                                 </td>
+                                                @if (auth()->user()->role == 'kph')
                                                 <td class="align-middle">
                                                     <a href="{{ route('kondisi.edit', $p->id) }}"
                                                         class="text-secondary font-weight-bold text-xs btn btn-warning">Edit
@@ -338,8 +346,8 @@
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">Delete</button>
                                                     </form>
-
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

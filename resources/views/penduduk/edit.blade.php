@@ -369,13 +369,18 @@
                                             D3</option>
                                         <option value="S1" {{ $penduduk->Pendidikan_terakhir == 'S1' ? 'selected' : '' }}>
                                             S1</option>
-                                        <option value="S2"
-                                            {{ $penduduk->Agama == 'S2' ? 'selected' : '' }}>S2</option>
+                                        <option value="S2" {{ $penduduk->Pendidikan_terakhir == 'S2' ? 'selected' : '' }}>
+                                            S2</option>
                                         <option value="S3" {{ $penduduk->Pendidikan_terakhir == 'S3' ? 'selected' : '' }}>
                                             S3</option>
                                         <option value="Tidak" {{ $penduduk->Pendidikan_terakhir == 'Tidak' ? 'selected' : '' }}>
                                             Tidak</option>
                                     </select>
+                                    @if ($errors->has('Pendidikan_terakhir'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('Pendidikan_terakhir') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
 
                                 <label for="jenis_bantuan_id">Jenis Bantuan</label>
@@ -395,9 +400,13 @@
                                     
                                 <label for="penerima_bantuan">Penerima Bantuan</label>
                                 <div class="mb-3">
-                                    <input type="text" id="penerima_bantuan" name="Penerima_bantuan"
-                                        class="form-control" placeholder="Penerima Bantuan"
-                                        aria-label="Penerima Bantuan" value="{{ $penduduk->Penerima_bantuan }}">
+                                <select id="penerima_bantuan" name="Penerima_bantuan" class="form-control" aria-label="penerima_bantuan">
+                                        <option value="">Pilih Penerima Bantuan</option>
+                                        <option value="Iya" {{ $penduduk->penerima_bantuan == 'Iya' ? 'selected' : '' }}>
+                                            Iya</option>
+                                        <option value="Tidak" {{ $penduduk->penerima_bantuan == 'Tidak' ? 'selected' : '' }}>
+                                            Tidak</option>
+                                </select>
                                 </div>
                                 <div class="mb-3">
                                     <div class="text-center">

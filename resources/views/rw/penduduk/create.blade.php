@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link  active" href="{{ route('rw.penduduk.index') }}">
+                    <a class="nav-link  active" href="{{ route('penduduk.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('rw.pekerjaan.index') }}">
+                    <a class="nav-link" href="{{ route('pekerjaan.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -94,7 +94,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('rw.kondisi.index') }}">
+                    <a class="nav-link " href="{{ route('kondisi.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -121,7 +121,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('rw.klasifikasi.index') }}">
+                    <a class="nav-link " href="{{ route('klasifikasi.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -203,12 +203,12 @@
                     <div class="card mb-4">
                         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                             <h6>Tambah Data Penduduk</h6>
-                            <a href="{{ route('rw.penduduk.index') }}" class="btn btn-primary">Kembali</a>
+                            <a href="{{ route('penduduk.index') }}" class="btn btn-primary">Kembali</a>
                         </div>
 
                         <div class="card-body px-0 pt-0 pb-2">
                             <form role="form" class="form-group mx-10 my-6"
-                                action="{{ route('rw.penduduk.store') }}" method="POST"
+                                action="{{ route('penduduk.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <label for="no_kk">No KK</label>
@@ -294,23 +294,24 @@
 
                                 <label for="jenis_bantuan">Jenis Bantuan</label>
                                 <div class="mb-3">
-                                    <input type="text" id="jenis_bantuan" name="Jenis_bantuan"
-                                        class="form-control" placeholder="Jenis Bantuan" aria-label="Jenis Bantuan">
+                                    <select id="jenis_bantuan_id" name="jenis_bantuan_id" class="form-control"
+                                        aria-label="jenis_bantuan_id">
+                                        <option readonly value="">Pilih Jenis Bantuan</option>
+                                        @foreach ($jenis_bantuan_id as $p)
+                                            <option value="{{ $p->id }}">{{ $p->nama_bantuan }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <label for="penerima_bantuan">Penerima Bantuan</label>
                                 <div class="mb-3">
-                                    <input type="text" id="penerima_bantuan" name="Penerima_bantuan"
-                                        class="form-control" placeholder="Penerima Bantuan"
+                                <select id="penerima_bantuan" name="Penerima_bantuan" class="form-control"
                                         aria-label="Penerima Bantuan">
+                                        <option value="">Pilih Penerima Bantuan</option>
+                                        <option value="Iya">Iya</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
                                 </div>
-
-                                <label for="jenis_bantuan_lain">Jenis Bantuan Lain</label>
-                                <div class="mb-3">
-                                    <input type="text" id="jenis_bantuan_lain" name="Jenis_bantuan_lain"
-                                        class="form-control" placeholder="Jenis Bantuan Lain"
-                                        aria-label="Jenis Bantuan Lain">
-                                </div </div>
                                 <div class="mb-3">
                                     <div class="text-center">
                                         <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Tambah
@@ -322,22 +323,6 @@
                         </div>
                     </div>
                 </div>
-                <footer class="footer pt-3  ">
-                    <div class="container-fluid">
-                        <div class="row align-items-center justify-content-lg-between">
-                            <div class="col-lg-6 mb-lg-0 mb-4">
-                                <div class="copyright text-center text-sm text-muted text-lg-start">
-                                    ©
-                                    <script>
-                                        document.write(new Date().getFullYear())
-                                    </script>,
-                                    made with by
-                                    <a href="#" class="font-weight-bold" target="_blank">RWKU</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
     </main>
     <div class="fixed-plugin">

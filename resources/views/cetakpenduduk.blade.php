@@ -80,12 +80,12 @@
                         <td>{{ $p->tgl_lahir }}</td>
                         <td>{{ $p->Agama }}</td>
                         <td>{{ $p->Pendidikan_terakhir }}</td>
-                        <td>{{ $p->Jenis_bantuan }}</td>
+                        <td>{{ $p->jenis_bantuan_id }}</td>
                         <td>{{ $p->Penerima_bantuan }}</td>
-                        <td>{{ $p->pekerjaan->Pekerjaan }}</td>
+                        <td>{{ $p->pekerjaan->pekerjaan }}</td>
                         <td class="text-center">
-                            @if ($p->kondisiRumah->foto_rumah)
-                                <img src="{{ asset('storage/foto_rumah/' . $p->kondisiRumah->foto_rumah) }}"
+                            @if ($p->kondisi)
+                                <img src="{{ asset('storage/foto_rumah/' . $p->kondisi) }}"
                                     alt="Pas Foto" style="width: 50px;">
                             @else
                                 Tidak Ada Foto

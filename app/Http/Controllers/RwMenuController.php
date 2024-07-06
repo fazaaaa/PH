@@ -10,6 +10,14 @@ use Illuminate\Validation\Rules;
 
 class RwMenuController extends Controller
 {
+    // public function __construct()
+    // {
+    //     // Middleware untuk memastikan pengguna telah login
+    //     $this->middleware('auth');
+
+    //     // Middleware untuk memeriksa peran pengguna, hanya admin dan pengurus RW yang bisa mengakses controller ini
+    //     $this->middleware('checkRole:admin,pengurus_rw');
+    // }
     public function index()
     {
         $pendidikan = User::where('role', 'rw')->get();

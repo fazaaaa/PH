@@ -6,11 +6,29 @@ use App\Models\Klasifikasi;
 use App\Models\KondisiRumah;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KondisiController extends Controller
 {
+    // public function __construct()
+    // {
+    //     // Middleware untuk memastikan pengguna telah login
+    //     $this->middleware('auth');
+
+    //     // Middleware untuk memeriksa peran pengguna, hanya admin dan pengurus RW yang bisa mengakses controller ini
+    //     $this->middleware('checkRole:admin,pengurus_rw');
+    // }
     public function index(Request $request)
     {
+        // $user = Auth::user();
+        // if ($user->role == 'admin') {
+        //     // Admin bisa melihat semua data
+        //     $penduduks = Penduduk::all();
+        // } elseif ($user->role == 'pengurus_rw') {
+        //     // Pengurus RW hanya bisa melihat data yang terkait dengan RW mereka
+        //     $penduduks = Penduduk::where('rw_id', $user->rw_id)->get();
+        // }
+
         $query = KondisiRumah::with('penduduk');
 
         if ($request->has('search')) {

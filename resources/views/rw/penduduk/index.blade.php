@@ -210,7 +210,7 @@
                             <div>
                                 <a href="{{ url('/cetakpenduduk') }}" class="btn btn-primary" target="blank">Cetak
                                     sebagai PDF</a>
-                                <a href="{{ route('rw.penduduk.add') }}" class="btn btn-secondary">Tambah Penduduk</a>
+                                <a href="{{ route('penduduk.add') }}" class="btn btn-secondary">Tambah Penduduk</a>
                             </div>
 
                         </div>
@@ -256,9 +256,6 @@
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Penerima_bantuan</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Jenis_bantuan_lain</th>
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
                                     </thead>
@@ -298,13 +295,10 @@
                                                     <h6 class="mb-0 text-sm">{{ $p->Pendidikan_terakhir }}</h6>
                                                 </td>
                                                 <td>
-                                                    <h6 class="mb-0 text-sm">{{ $p->Jenis_bantuan }}</h6>
+                                                    <h6 class="mb-0 text-sm">{{ $p->jenis_bantuan_id }}</h6>
                                                 </td>
                                                 <td>
                                                     <h6 class="mb-0 text-sm">{{ $p->Penerima_bantuan }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="mb-0 text-sm">{{ $p->Jenis_bantuan_lain }}</h6>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -315,22 +309,6 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer pt-3  ">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
-                            <div class="copyright text-center text-sm text-muted text-lg-start">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script>,
-                                made with by
-                                <a href="#" class="font-weight-bold" target="_blank">DF</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </main>
     <div class="fixed-plugin">

@@ -14,12 +14,23 @@ class CheckRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        if (Auth::check() && Auth::user()->role === $role) {
-            return $next($request);
+        if (!Auth::check()) {
+            // Jika pengguna tidak terotentikasi, arahkan ke halaman login
+            return redirect('login');
         }
-
-        return redirect('/login');
+    
+        $user = Auth::user();
+    
+        // Periksa apakah pengguna memiliki salah satu peran yang dibutuhkan
+        foreach ($roles as $role) {
+            if ($user->hasRole($role)) {
+                return $next($request);
+            }
+        }
+    
+        // Jika pengguna tidak memiliki peran yang dibutuhkan, berikan respons akses ditolak
+        return response('Permission Denied', 403);
     }
 }

@@ -12,10 +12,23 @@ use App\Models\JenisBantuan;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Phpml\Classification\NaiveBayes;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+
 
 class PendudukController extends Controller
 {
+    // public function __construct()
+    // {
+    //     // Middleware untuk memastikan pengguna telah login
+    //     $this->middleware('auth');
+
+    //     // Middleware untuk memeriksa peran pengguna, hanya admin dan pengurus RW yang bisa mengakses controller ini
+    //     $this->middleware('checkRole:kph,rw');
+    // }
+
+
     // Method untuk menampilkan data penduduk
     public function index(Request $request)
     {
@@ -33,10 +46,10 @@ class PendudukController extends Controller
                 ->orWhere('tgl_lahir', 'like', "%{$search}%")
                 ->orWhere('Agama', 'like', "%{$search}%")
                 ->orWhere('Pendidikan_terakhir', 'like', "%{$search}%")
-                ->orWhere('jenis_bantuan_id', function($query) use ($search) {
+                ->orWhere('jenis_bantuan_id', function ($query) use ($search) {
                     $query->select('id')
-                    ->from('jenis_bantuan')
-                    ->where('nama_bantuan', 'like', "%{$search}%");
+                        ->from('jenis_bantuan')
+                        ->where('nama_bantuan', 'like', "%{$search}%");
                 })
                 ->orWhere('Penerima_bantuan', 'like', "%{$search}%");
         }
@@ -48,9 +61,11 @@ class PendudukController extends Controller
 
     public function cetakpenduduk()
     {
-        $penduduk = Penduduk::with(['pekerjaan', 'kondisiRumah'])->get();
 
-        // Cek apakah ada penduduk yang tidak memiliki pekerjaan atau kondisi rumah
+        $penduduk = Penduduk::with(['pekerjaan', 'kondisiRumah'])->get();
+        $penduduk->whereNotIn('id', [1, 2, 3, 4, 5]);
+
+        
         foreach ($penduduk as $p) {
             if (is_null($p->pekerjaan) || is_null($p->kondisiRumah)) {
                 return redirect()->back()->with('error', 'Lengkapi data pekerjaan dan kondisi rumah untuk cetak');
@@ -105,7 +120,7 @@ class PendudukController extends Controller
             'tgl_lahir' => 'required|date',
             'Agama' => 'required',
             'Pendidikan_terakhir' => 'required',
-            'jenis_bantuan_id' => 'required|exists:jenis_bantuans,id|integer',
+            'jenis_bantuan_id' => 'required',
             'Penerima_bantuan' => 'required'
         ]);
 
@@ -184,7 +199,7 @@ class PendudukController extends Controller
     {
         $jenis_bantuan_id = JenisBantuan::all();
         $penduduk = Penduduk::find($id);
-        return view('penduduk.edit', compact('penduduk','jenis_bantuan_id'));
+        return view('penduduk.edit', compact('penduduk', 'jenis_bantuan_id'));
     }
 
     public function update(Request $request, $id)

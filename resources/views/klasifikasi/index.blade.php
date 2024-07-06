@@ -283,7 +283,7 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                            <h6>Data klasifikasi Naive Byes</h6>
+                            <h6>Hasil Data klasifikasi</h6>
                             <a href="{{ url('/cetakklasifikasi') }}" class="btn btn-primary" target="blank">Cetak
                                 sebagai PDF</a>
                         </div>
@@ -356,11 +356,9 @@
                         </div>
                     </div>
 
-                    <div class="card mb-4">
+                    <!-- <div class="card mb-4">
                         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                             <h6>Data klasifikasi C4.5</h6>
-                            {{-- <a href="{{ url('/cetakklasifikasi') }}" class="btn btn-primary" target="blank">Cetak
-                                sebagai PDF</a> --}}
                         </div>
 
                         <div class="card-body px-0 pt-0 pb-2">
@@ -426,10 +424,10 @@
                                 <br><br>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            <footer class="footer pt-3  ">
+            <!-- <footer class="footer pt-3  ">
                 <div class="container-fluid">
                     <div class="row align-items-center justify-content-lg-between">
                         <div class="col-lg-6 mb-lg-0 mb-4">
@@ -444,7 +442,7 @@
                         </div>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
         </div>
     </main>
     <div class="fixed-plugin">

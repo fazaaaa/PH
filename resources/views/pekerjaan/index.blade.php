@@ -279,6 +279,9 @@
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Status</th>
+                                            @if (auth()->user()->role == 'kph')
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Aksi</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -300,6 +303,7 @@
                                                 <td>
                                                     <h6 class="mb-0 text-sm">{{ $p->status }}</h6>
                                                 </td>
+                                                @if (auth()->user()->role == 'kph')
                                                 <td class="align-middle">
                                                     <a href="{{ route('pekerjaan.edit', $p->id) }}"
                                                         class="text-secondary font-weight-bold text-xs btn btn-warning">Edit
@@ -310,8 +314,8 @@
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">Delete</button>
                                                     </form>
-
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

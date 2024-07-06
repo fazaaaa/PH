@@ -30,15 +30,20 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
+        // dd($user);
 
         // Menentukan redirect berdasarkan role user
         if ($user->role == 'kph') {
             return redirect('/penduduk');
-        } elseif ($user->role == 'rw') {
-            return redirect('/rw/penduduk');
-        } else {
+        } 
+        elseif ($user->role == 'rw') {
+            // print('login as RW');
+            // die;
+            return redirect('/penduduk');
+        } 
+        else {
             // Default redirect jika role tidak sesuai atau belum didefinisikan
-            return redirect(RouteServiceProvider::HOME);
+            return redirect()->intended(RouteServiceProvider::HOME);
         }
     }
 

@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Log;
 
 class JenisBantuanController extends Controller
 {
+    // public function __construct()
+    // {
+    //     // Middleware untuk memastikan pengguna telah login
+    //     $this->middleware('auth');
+
+    //     // Middleware untuk memeriksa peran pengguna, hanya admin dan pengurus RW yang bisa mengakses controller ini
+    //     $this->middleware('checkRole:admin');
+    // }
     /**
      * Display a listing of the resource.
      */
