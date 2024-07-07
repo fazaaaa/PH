@@ -42,6 +42,10 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
+                @if(Auth::check())
+                @php
+                $user = Auth::user();
+                @endphp
                 <li class="nav-item">
                     <a class="nav-link  active" href="{{ route('penduduk.index') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -130,6 +134,7 @@
                         <span class="nav-link-text ms-1">Klasifikasi</span>
                     </a>
                 </li>
+                @if($user->hasRole('kph'))
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('rwmenu.index') }}">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -174,6 +179,8 @@
                         <span class="nav-link-text ms-1">Jenis Bantuan</span>
                     </a>
                 </li>
+                @endif
+                @endif
             </ul>
         </div>
     </aside>
@@ -271,7 +278,7 @@
                                             @if (auth()->user()->role == 'kph')
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Aksi</th>
                                             @endif
-                                            </tr>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($penduduk as $p)

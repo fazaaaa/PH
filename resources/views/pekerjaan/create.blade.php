@@ -39,6 +39,10 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
+            @if(Auth::check())
+                @php
+                $user = Auth::user();
+                @endphp
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('penduduk.index') }}">
                         <div
@@ -147,6 +151,7 @@
                         <span class="nav-link-text ms-1">Klasifikasi</span>
                     </a>
                 </li>
+                @if($user->hasRole('kph'))
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('rwmenu.index') }}">
                         <div
@@ -201,6 +206,8 @@
                         <span class="nav-link-text ms-1">Jenis Bantuan</span>
                     </a>
                 </li>
+                @endif
+                @endif
             </ul>
         </div>
     </aside>
@@ -310,22 +317,6 @@
                         </div>
                     </div>
                 </div>
-                <footer class="footer pt-3  ">
-                    <div class="container-fluid">
-                        <div class="row align-items-center justify-content-lg-between">
-                            <div class="col-lg-6 mb-lg-0 mb-4">
-                                <div class="copyright text-center text-sm text-muted text-lg-start">
-                                    ©
-                                    <script>
-                                        document.write(new Date().getFullYear())
-                                    </script>,
-                                    made with by
-                                    <a href="#" class="font-weight-bold" target="_blank">RWKU</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
     </main>
     <div class="fixed-plugin">

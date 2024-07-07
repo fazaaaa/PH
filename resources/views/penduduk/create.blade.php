@@ -39,6 +39,10 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
+            @if(Auth::check())
+                @php
+                    $user = Auth::user();
+                @endphp
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('penduduk.index') }}">
                         <div
@@ -147,6 +151,7 @@
                         <span class="nav-link-text ms-1">Klasifikasi</span>
                     </a>
                 </li>
+                @if($user->hasRole('kph'))
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('rwmenu.index') }}">
                         <div
@@ -202,6 +207,8 @@
                     </a>
                 </li>
             </ul>
+            @endif
+            @endif
         </div>
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -354,9 +361,8 @@
 
                                 <label for="jenis_bantuan">Jenis Bantuan</label>
                                 <div class="mb-3">
-                                    <select id="jenis_bantuan_id" name="jenis_bantuan_id" class="form-control"
-                                        aria-label="jenis_bantuan_id">
-                                        <option readonly value="">Pilih Jenis Bantuan</option>
+                                    <select  id="jenis_bantuan_id" name="jenis_bantuan_id[]" class="form-control select2" aria-label="jenis_bantuan_id" multiple>
+                                        <option value="">Pilih Jenis Bantuan</option>
                                         @foreach ($jenis_bantuan_id as $p)
                                             <option value="{{ $p->id }}">{{ $p->nama_bantuan }}</option>
                                         @endforeach

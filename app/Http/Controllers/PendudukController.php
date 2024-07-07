@@ -121,6 +121,7 @@ class PendudukController extends Controller
             'Agama' => 'required',
             'Pendidikan_terakhir' => 'required',
             'jenis_bantuan_id' => 'required',
+            // 'jenis_bantuan_id.*' => 'exists:jenis_bantuan,id',
             'Penerima_bantuan' => 'required'
         ]);
 
@@ -198,7 +199,7 @@ class PendudukController extends Controller
     public function edit($id)
     {
         $jenis_bantuan_id = JenisBantuan::all();
-        $penduduk = Penduduk::find($id);
+        $penduduk = Penduduk::findOrFail($id);
         return view('penduduk.edit', compact('penduduk', 'jenis_bantuan_id'));
     }
 
@@ -209,7 +210,7 @@ class PendudukController extends Controller
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('public/pas_foto', $fileName);
         }
-        Penduduk::find($id)->update([
+        Penduduk::findOrFail($id)->update([
             'No_KK' => $request->No_KK,
             'NIK' => $request->NIK,
             'pas_foto' => $fileName ?? null,

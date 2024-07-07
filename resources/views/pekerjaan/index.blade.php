@@ -43,6 +43,10 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
+            @if(Auth::check())
+                @php
+                $user = Auth::user();
+                @endphp
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('penduduk.index') }}">
                         <div
@@ -151,6 +155,7 @@
                         <span class="nav-link-text ms-1">Klasifikasi</span>
                     </a>
                 </li>
+                @if($user->hasRole('kph'))
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('rwmenu.index') }}">
                         <div
@@ -205,6 +210,8 @@
                         <span class="nav-link-text ms-1">Jenis Bantuan</span>
                     </a>
                 </li>
+                @endif
+                @endif
             </ul>
         </div>
     </aside>
