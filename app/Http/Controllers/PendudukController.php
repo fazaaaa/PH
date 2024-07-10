@@ -45,7 +45,7 @@ class PendudukController extends Controller
                 ->orWhere('Penerima_bantuan', 'like', "%{$search}%");
         }
 
-        $penduduk = $query->with('jenisBantuan')->get();
+        $penduduk = $query->with('manyJenisBantuanPenduduk')->get();
         return view('penduduk.index', compact('penduduk'));
     }
 

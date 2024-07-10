@@ -172,6 +172,7 @@ class PekerjaanController extends Controller
         $totalData = Hasil::count();
         $layak = Hasil::where('keterangan', 'Layak')->count();
         $tidakLayak = Hasil::where('keterangan', 'Tidak Layak')->count();
+        
         // pendapatan
         $pendapatanrendahlayak = Hasil::where('pendapatan', 'Rendah')->where('keterangan', 'Layak')->count();
         $pendapatanrendahtidakLayak = Hasil::where('pendapatan', 'Rendah')->where('keterangan', 'Tidak Layak')->count();
@@ -305,6 +306,7 @@ class PekerjaanController extends Controller
         $totalData = Klasifikasi::count();
         $layak = Klasifikasi::where('keterangan', 'Layak')->count();
         $tidakLayak = Klasifikasi::where('keterangan', 'Tidak Layak')->count();
+        
         // pendapatan
         $pendapatanrendah  = Klasifikasi::where('pendapatan', 'Rendah')->count();
         $pendapatanrendahlayak = Klasifikasi::where('pendapatan', 'Rendah')->where('keterangan', 'Layak')->count();

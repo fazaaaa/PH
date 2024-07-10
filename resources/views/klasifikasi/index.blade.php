@@ -336,7 +336,7 @@
                         </div>
                     </div>
 
-                    <!-- <div class="card mb-4">
+                    <div class="card mb-4">
                         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                             <h6>Data klasifikasi C4.5</h6>
                         </div>
@@ -404,7 +404,7 @@
                                 <br><br>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <!-- <footer class="footer pt-3  ">

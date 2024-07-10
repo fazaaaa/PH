@@ -315,9 +315,11 @@
                                                 <h6 class="mb-0 text-sm">{{ $p->Pendidikan_terakhir }}</h6>
                                             </td>
                                             <td>
-                                            @foreach($p->jenisBantuan as $jenisBantuan)
-                                                <span class="badge badge-primary">{{ $jenisBantuan->nama_bantuan }}</span>
-                                            @endforeach
+                                                <h6 class="mb-0 text-sm">
+                                                    @foreach($p->manyJenisBantuanPenduduk as $jenisBantuanPenduduk)
+                                                        {{ @$jenisBantuanPenduduk->jenisBantuan->nama_bantuan }}
+                                                    @endforeach
+                                                </h6>
                                             </td>
                                             <td>
                                                 <h6 class="mb-0 text-sm">{{ $p->Penerima_bantuan }}</h6>

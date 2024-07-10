@@ -44,8 +44,13 @@ class Penduduk extends Model
         return $this->hasOne(Hasil::class, 'id_penduduk', 'id');
     }
 
-    public function jenisBantuan()
+    // public function jenisBantuan()
+    // {
+    //     return $this->belongsToMany(JenisBantuan::class, 'jenis_bantuan_penduduk','id_penduduk','jenisbantuan_id');
+    // }
+    
+    public function manyJenisBantuanPenduduk()
     {
-        return $this->belongsToMany(JenisBantuan::class, 'jenis_bantuan_penduduk','id_penduduk','jenisbantuan_id');
+        return $this->hasMany(JenisBantuanPenduduk::class, 'penduduk_id','id');
     }
 }
