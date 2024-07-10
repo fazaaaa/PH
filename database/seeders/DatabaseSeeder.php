@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '2024-05-08',
                 'Agama' => 'Islam',
                 'Pendidikan_terakhir' => 'S1',
-                'jenis_bantuan_id' => '1',
+                // 'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Ya'
             ],
             [
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '2023-04-10',
                 'Agama' => 'Kristen',
                 'Pendidikan_terakhir' => 'SMA',
-                'jenis_bantuan_id' => '1',
+                // 'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Tidak'
             ],
             [
@@ -108,7 +108,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '2021-03-15',
                 'Agama' => 'Hindu',
                 'Pendidikan_terakhir' => 'SD',
-                'jenis_bantuan_id' => '1',
+                // 'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Ya'
             ],
             [
@@ -122,7 +122,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '1975-02-20',
                 'Agama' => 'Buddha',
                 'Pendidikan_terakhir' => 'D3',
-                'jenis_bantuan_id' => '1',
+                // 'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Ya'
             ],
             [
@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => '1980-07-25',
                 'Agama' => 'Islam',
                 'Pendidikan_terakhir' => 'S2',
-                'jenis_bantuan_id' => '1',
+                // 'jenis_bantuan_id' => '1',
                 'Penerima_bantuan' => 'Tidak'
             ]
         ];

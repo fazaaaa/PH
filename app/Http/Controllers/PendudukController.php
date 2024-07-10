@@ -19,19 +19,10 @@ use Illuminate\Support\Facades\Log;
 
 class PendudukController extends Controller
 {
-    // public function __construct()
-    // {
-    //     // Middleware untuk memastikan pengguna telah login
-    //     $this->middleware('auth');
-
-    //     // Middleware untuk memeriksa peran pengguna, hanya admin dan pengurus RW yang bisa mengakses controller ini
-    //     $this->middleware('checkRole:kph,rw');
-    // }
-
-
-    // Method untuk menampilkan data penduduk
+    
     public function index(Request $request)
     {
+        // $penduduk = Penduduk::with('jenisBantuan')->get();
         $query = Penduduk::query();
         $query->whereNotIn('id', [1, 2, 3, 4, 5]);
 
@@ -54,7 +45,7 @@ class PendudukController extends Controller
                 ->orWhere('Penerima_bantuan', 'like', "%{$search}%");
         }
 
-        $penduduk = $query->get();
+        $penduduk = $query->with('jenisBantuan')->get();
         return view('penduduk.index', compact('penduduk'));
     }
 
@@ -120,8 +111,8 @@ class PendudukController extends Controller
             'tgl_lahir' => 'required|date',
             'Agama' => 'required',
             'Pendidikan_terakhir' => 'required',
-            'jenis_bantuan_id' => 'required',
-            // 'jenis_bantuan_id.*' => 'exists:jenis_bantuan,id',
+            'jenis_bantuan_id' => 'required|array',
+            'jenis_bantuan_id.*' => 'exists:jenis_bantuans,id',
             'Penerima_bantuan' => 'required'
         ]);
 
@@ -131,7 +122,7 @@ class PendudukController extends Controller
             $file->storeAs('public/pas_foto', $fileName);
 
             try {
-                $penduduk = new Penduduk([
+                $penduduk = Penduduk::create([
                     'No_KK' => $request->No_KK,
                     'NIK' => $request->NIK,
                     'pas_foto' => $fileName ?? null,
@@ -142,11 +133,15 @@ class PendudukController extends Controller
                     'tgl_lahir' => $request->tgl_lahir,
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-                    'jenis_bantuan_id' => $request->jenis_bantuan_id,
+                    // 'jenis_bantuan_id' => $request->jenis_bantuan_id,
                     'Penerima_bantuan' => $request->Penerima_bantuan
                 ]);
 
+                if ($request->has('jenis_bantuan_id')) {
+                    $penduduk->JenisBantuan()->sync($request->input('jenis_bantuan_id'));
+                }        
                 $penduduk->save();
+
 
                 // inserrt id penduduk ke tabel klasifikasi
                 $klasifikasi = new Klasifikasi();
@@ -173,12 +168,16 @@ class PendudukController extends Controller
                     'tgl_lahir' => $request->tgl_lahir,
                     'Agama' => $request->Agama,
                     'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-                    'jenis_bantuan_id' => $request->jenis_bantuan_id,
+                    // 'jenis_bantuan_id' => $request->jenis_bantuan_id,
                     'Penerima_bantuan' => $request->Penerima_bantuan
                 ]);
 
                 $penduduk->save();
 
+                if ($request->has('jenis_bantuan_id')) {
+                    $penduduk->jenisBantuan()->sync($request->input('jenis_bantuan_id'));
+                }
+        
                 // inserrt id penduduk ke tabel klasifikasi
                 $klasifikasi = new Klasifikasi();
                 $klasifikasi->id_penduduk = $penduduk->id;
@@ -203,7 +202,7 @@ class PendudukController extends Controller
         return view('penduduk.edit', compact('penduduk', 'jenis_bantuan_id'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $penduduk)
     {
         if ($request->hasFile('pas_foto')) {
             $file = $request->file('pas_foto');
@@ -224,6 +223,8 @@ class PendudukController extends Controller
             'jenis_bantuan_id' => $request->jenis_bantuan_id,
             'Penerima_bantuan' => $request->Penerima_bantuan
         ]);
+
+        $penduduk->jenis_bantuan_id()->sync($request->jenis_bantuan_id);
 
         return redirect()->route('penduduk.index')->with('success', 'Data berhasil diubah');
     }

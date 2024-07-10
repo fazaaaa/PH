@@ -385,10 +385,11 @@
 
                                 <label for="jenis_bantuan_id">Jenis Bantuan</label>
                                     <div class="mb-3">
-                                        <select multiple class="form-control{{ $errors->has('jenis_bantuan_id') ? ' has-error' : '' }}" name="jenis_bantuan_id">
-                                            <option disabled selected>--Pilih Jenis bantuan--</option>
+                                        <select class="form-control{{ $errors->has('jenis_bantuan_id') ? ' has-error' : '' }}" name="jenis_bantuan_id[]">
+                                            <option disabled selected>Pilih Jenis bantuan</option>
                                             @foreach ($jenis_bantuan_id as $p)
-                                                <option value="{{ $p->id }}">{{ $p->nama_bantuan }}</option>
+                                                <option value="{{ $p->id }}" {{ in_array($p->id, $penduduk->jenis_bantuan_id->pluck('id')->toArray()) ? 'selected' : ''}}>
+                                                {{ $p->nama_bantuan }}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('jenis_bantuan_id'))

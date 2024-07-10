@@ -20,7 +20,7 @@ class Penduduk extends Model
         'tgl_lahir',
         'Agama',
         'Pendidikan_terakhir',
-        'jenis_bantuan_id',
+        // 'jenis_bantuan_id',
         'Penerima_bantuan'
     ];
 
@@ -46,6 +46,6 @@ class Penduduk extends Model
 
     public function jenisBantuan()
     {
-        return $this->belongsTo(JenisBantuan::class);
+        return $this->belongsToMany(JenisBantuan::class, 'jenis_bantuan_penduduk','id_penduduk','jenisbantuan_id');
     }
 }

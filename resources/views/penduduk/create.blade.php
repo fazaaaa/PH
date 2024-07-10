@@ -22,6 +22,10 @@
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -361,9 +365,8 @@
 
                                 <label for="jenis_bantuan">Jenis Bantuan</label>
                                 <div class="mb-3">
-                                    <select  id="jenis_bantuan_id" name="jenis_bantuan_id[]" class="form-control select2" aria-label="jenis_bantuan_id" multiple>
-                                        <option value="">Pilih Jenis Bantuan</option>
-                                        @foreach ($jenis_bantuan_id as $p)
+                                    <select name="jenis_bantuan_id[]" id="jenis_bantuan_id" class="form-control select2" multiple="multiple">
+                                        @foreach($jenis_bantuan_id as $p)
                                             <option value="{{ $p->id }}">{{ $p->nama_bantuan }}</option>
                                         @endforeach
                                     </select>
@@ -461,6 +464,15 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+    @endpush
     <!--   Core JS Files   -->
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap.min.js"></script>

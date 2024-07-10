@@ -9,20 +9,10 @@ use Illuminate\Support\Facades\Log;
 
 class JenisBantuanController extends Controller
 {
-    // public function __construct()
-    // {
-    //     // Middleware untuk memastikan pengguna telah login
-    //     $this->middleware('auth');
-
-    //     // Middleware untuk memeriksa peran pengguna, hanya admin dan pengurus RW yang bisa mengakses controller ini
-    //     $this->middleware('checkRole:admin');
-    // }
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        $jenisbantuan = JenisBantuan::with('penduduk')->get();
+        $jenisbantuan = JenisBantuan::all();
         return view('jenisbantuan.index', compact('jenisbantuan'));
     }
 
@@ -31,8 +21,8 @@ class JenisBantuanController extends Controller
      */
     public function create()
     {
-        $penduduk = Penduduk::all();
-        return view('jenisbantuan.create', compact('penduduk'));
+        // $penduduk = Penduduk::all();
+        return view('jenisbantuan.create');
     }
 
     /**
@@ -77,7 +67,7 @@ class JenisBantuanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        JenisBantuan::find($id)->update([
+        JenisBantuan::findOrFail($id)->update([
             'nama_bantuan' => $request->nama_bantuan,
         ]);
 
