@@ -138,7 +138,7 @@ class PendudukController extends Controller
                 ]);
 
                 if ($request->has('jenis_bantuan_id')) {
-                    $penduduk->JenisBantuan()->sync($request->input('jenis_bantuan_id'));
+                    $penduduk->manyJenisBantuanPenduduk()->sync($request->input('jenis_bantuan_id'));
                 }        
                 $penduduk->save();
 
@@ -198,12 +198,29 @@ class PendudukController extends Controller
     public function edit($id)
     {
         $jenis_bantuan_id = JenisBantuan::all();
-        $penduduk = Penduduk::findOrFail($id);
+        $penduduk = Penduduk::with('manyJenisBantuanPenduduk')->findOrFail($id);
         return view('penduduk.edit', compact('penduduk', 'jenis_bantuan_id'));
     }
 
     public function update(Request $request, $id, $penduduk)
     {
+        $request->validate([
+            'No_KK' => 'required',
+            'NIK' => 'required',
+            'pas_foto' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'Nama_lengkap' => 'required',
+            'Hbg_kel' => 'required',
+            'JK' => 'required',
+            'tmpt_lahir' => 'required',
+            'tgl_lahir' => 'required|date',
+            'Agama' => 'required',
+            'Pendidikan_terakhir' => 'required',
+            'jenis_bantuan_id' => 'required|array',
+            'jenis_bantuan_id.*' => 'exists:jenis_bantuans,id',
+            'Penerima_bantuan' => 'required'
+        ]);
+
+
         if ($request->hasFile('pas_foto')) {
             $file = $request->file('pas_foto');
             $fileName = time() . '_' . $file->getClientOriginalName();
@@ -220,11 +237,14 @@ class PendudukController extends Controller
             'tgl_lahir' => $request->tgl_lahir,
             'Agama' => $request->Agama,
             'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-            'jenis_bantuan_id' => $request->jenis_bantuan_id,
+            // 'jenis_bantuan_id' => $request->jenis_bantuan_id,
             'Penerima_bantuan' => $request->Penerima_bantuan
         ]);
 
-        $penduduk->jenis_bantuan_id()->sync($request->jenis_bantuan_id);
+        if ($request->has('jenis_bantuan_id')) {
+            $penduduk->manyJenisBantuanPenduduk()->sync($request->input('jenis_bantuan_id'));
+        }   
+        $penduduk->save();
 
         return redirect()->route('penduduk.index')->with('success', 'Data berhasil diubah');
     }

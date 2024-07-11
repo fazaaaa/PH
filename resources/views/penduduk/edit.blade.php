@@ -22,6 +22,7 @@
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -385,18 +386,13 @@
 
                                 <label for="jenis_bantuan_id">Jenis Bantuan</label>
                                     <div class="mb-3">
-                                        <select class="form-control{{ $errors->has('jenis_bantuan_id') ? ' has-error' : '' }}" name="jenis_bantuan_id[]">
-                                            <option disabled selected>Pilih Jenis bantuan</option>
+                                        <select name="jenis_bantuan_id[]" id="jenis_bantuan_id" class="form-control select2" multiple="multiple">
                                             @foreach ($jenis_bantuan_id as $p)
-                                                <option value="{{ $p->id }}" {{ in_array($p->id, $penduduk->jenis_bantuan_id->pluck('id')->toArray()) ? 'selected' : ''}}>
-                                                {{ $p->nama_bantuan }}</option>
+                                                <option value="{{ $p->id }}" {{ in_array($p->id, $penduduk->manyJenisBantuanPenduduk->pluck('jenis_bantuan_id')->toArray()) ? 'selected' : ''}}>
+                                                {{ $p->nama_bantuan }}
+                                                </option>
                                             @endforeach
                                         </select>
-                                        @if ($errors->has('jenis_bantuan_id'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('jenis_bantuan_id') }}</strong>
-                                            </span>
-                                         @endif
                                     </div>
                                     
                                 <label for="penerima_bantuan">Penerima Bantuan</label>
@@ -420,22 +416,6 @@
                         </div>
                     </div>
                 </div>
-                <footer class="footer pt-3  ">
-                    <div class="container-fluid">
-                        <div class="row align-items-center justify-content-lg-between">
-                            <div class="col-lg-6 mb-lg-0 mb-4">
-                                <div class="copyright text-center text-sm text-muted text-lg-start">
-                                    ©
-                                    <script>
-                                        document.write(new Date().getFullYear())
-                                    </script>,
-                                    made with by
-                                    <a href="#" class="font-weight-bold" target="_blank">RWKU</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
     </main>
     <div class="fixed-plugin">
@@ -500,6 +480,13 @@
         </div>
     </div>
     <!--   Core JS Files   -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script> 
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap.min.js"></script>
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>

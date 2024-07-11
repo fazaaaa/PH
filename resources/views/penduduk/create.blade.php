@@ -22,7 +22,6 @@
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
@@ -364,7 +363,7 @@
 
                                 <label for="jenis_bantuan">Jenis Bantuan</label>
                                 <div class="mb-3">
-                                    <select name="jenis_bantuan_id[]" id="jenis_bantuan_id" class="form-control select2" multiple="multiple">
+                                    <select name="jenis_bantuan_id[]" id="jenis_bantuan_id" class="form-control select2" multiple="multiple" aria-label="Jenis Bantuan">
                                         @foreach($jenis_bantuan_id as $p)
                                             <option value="{{ $p->id }}">{{ $p->nama_bantuan }}</option>
                                         @endforeach
