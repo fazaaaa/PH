@@ -9,17 +9,18 @@ use App\Models\Pekerjaan;
 use App\Models\Pendidikan;
 use App\Models\Penduduk;
 use App\Models\JenisBantuan;
+use App\Models\JenisBantuanPenduduk;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Phpml\Classification\NaiveBayes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
+use PhpParser\Node\Stmt\Foreach_;
 
 class PendudukController extends Controller
 {
-    
+
     public function index(Request $request)
     {
         // $penduduk = Penduduk::with('jenisBantuan')->get();
@@ -53,10 +54,9 @@ class PendudukController extends Controller
     public function cetakpenduduk()
     {
 
-        $penduduk = Penduduk::with(['pekerjaan', 'kondisiRumah'])->get();
-        $penduduk->whereNotIn('id', [1, 2, 3, 4, 5]);
+        $penduduk = Penduduk::with(['pekerjaan', 'kondisiRumah'])->whereNotIn('id', [1, 2, 3, 4, 5])->get();
 
-        
+        // dd($penduduk);
         foreach ($penduduk as $p) {
             if (is_null($p->pekerjaan) || is_null($p->kondisiRumah)) {
                 return redirect()->back()->with('error', 'Lengkapi data pekerjaan dan kondisi rumah untuk cetak');
@@ -79,8 +79,7 @@ class PendudukController extends Controller
 
     public function cetakklasifikasi(Request $request)
     {
-        $query = Penduduk::query();
-        $query->whereNotIn('id', [1, 2, 3, 4, 5]);
+        $query = Penduduk::query()->whereNotIn('id', [1, 2, 3, 4, 5]);
         $pendudukIds = Penduduk::where('Nama_lengkap', 'like', "%" . $request->nama . "%")->pluck('id');
         $data = Klasifikasi::with('penduduk')->whereIn('id_penduduk', $pendudukIds)->get();
         $kondisi = KondisiRumah::with('penduduk')->whereIn('id_penduduk', $pendudukIds)->get();
@@ -138,8 +137,10 @@ class PendudukController extends Controller
                 ]);
 
                 if ($request->has('jenis_bantuan_id')) {
-                    $penduduk->manyJenisBantuanPenduduk()->sync($request->input('jenis_bantuan_id'));
-                }        
+                    foreach ($request->jenis_bantuan_id as $jenis_bantuan_id) {
+                        $penduduk->manyJenisBantuanPenduduk()->create(['jenis_bantuan_id' => $jenis_bantuan_id]);
+                    }
+                }
                 $penduduk->save();
 
 
@@ -175,9 +176,11 @@ class PendudukController extends Controller
                 $penduduk->save();
 
                 if ($request->has('jenis_bantuan_id')) {
-                    $penduduk->jenisBantuan()->sync($request->input('jenis_bantuan_id'));
+                    foreach ($request->jenis_bantuan_id as $jenis_bantuan_id) {
+                        $penduduk->manyJenisBantuanPenduduk()->create(['jenis_bantuan_id' => $jenis_bantuan_id]);
+                    }
                 }
-        
+
                 // inserrt id penduduk ke tabel klasifikasi
                 $klasifikasi = new Klasifikasi();
                 $klasifikasi->id_penduduk = $penduduk->id;
@@ -202,7 +205,7 @@ class PendudukController extends Controller
         return view('penduduk.edit', compact('penduduk', 'jenis_bantuan_id'));
     }
 
-    public function update(Request $request, $id, $penduduk)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'No_KK' => 'required',
@@ -226,7 +229,8 @@ class PendudukController extends Controller
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('public/pas_foto', $fileName);
         }
-        Penduduk::findOrFail($id)->update([
+        $penduduk = Penduduk::findOrFail($id);
+        $penduduk->update([
             'No_KK' => $request->No_KK,
             'NIK' => $request->NIK,
             'pas_foto' => $fileName ?? null,
@@ -237,14 +241,11 @@ class PendudukController extends Controller
             'tgl_lahir' => $request->tgl_lahir,
             'Agama' => $request->Agama,
             'Pendidikan_terakhir' => $request->Pendidikan_terakhir,
-            // 'jenis_bantuan_id' => $request->jenis_bantuan_id,
             'Penerima_bantuan' => $request->Penerima_bantuan
         ]);
 
-        if ($request->has('jenis_bantuan_id')) {
-            $penduduk->manyJenisBantuanPenduduk()->sync($request->input('jenis_bantuan_id'));
-        }   
-        $penduduk->save();
+        // dd($penduduk);
+        $penduduk->jenisBantuans()->sync($request->jenis_bantuan_id);
 
         return redirect()->route('penduduk.index')->with('success', 'Data berhasil diubah');
     }

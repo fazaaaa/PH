@@ -388,7 +388,8 @@
                                     <div class="mb-3">
                                         <select name="jenis_bantuan_id[]" id="jenis_bantuan_id" class="form-control select2" multiple="multiple">
                                             @foreach ($jenis_bantuan_id as $p)
-                                                <option value="{{ $p->id }}" {{ in_array($p->id, $penduduk->manyJenisBantuanPenduduk->pluck('jenis_bantuan_id')->toArray()) ? 'selected' : ''}}>
+                                                <option value="{{ $p->id }}"
+                                                @if(in_array($p->id, $penduduk->manyJenisBantuanPenduduk->pluck('jenis_bantuan_id')->toArray())) 'selected' @endif>
                                                 {{ $p->nama_bantuan }}
                                                 </option>
                                             @endforeach

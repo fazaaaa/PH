@@ -11,7 +11,7 @@ class JenisBantuanPenduduk extends Model
 
     protected $table = 'jenis_bantuan_penduduk';
     protected $fillable = [
-        'id_penduduk','jenis_bantuan_id'
+        'penduduk_id','jenis_bantuan_id'
     ];
 
     public function jenisBantuan()
